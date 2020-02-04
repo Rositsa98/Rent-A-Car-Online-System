@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+
+        <select class="mdb-select md-form" id="select-location">
+            <option value="" disabled selected>Choose location</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+
+        <mat-form-field class="datepickers">
+                <input matInput [matDatepicker]="picker1" placeholder="From date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker> 
+        </mat-form-field>
+
+        <mat-form-field class="datepickers">
+                <input matInput [matDatepicker]="picker2" placeholder="To date">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker> 
+        </mat-form-field>
+
+        <button class="btn btn-primary" id="search-btn" routerLink="/main" class="btn btn-primary">Search</button>
+    </div>
+
+    <div id="row-space"></div>
+
+    <div class="main-content">
+        <div class="cars">
+                <div class="img-with-text">
+                        <img src="../../../assets/images/shelby_car.jpg"  alt="ford" />
+                        <p>Ford Mustang Shelby</p>
+                
+
+             
+                        <img src="../../../assets/images/wrangler_4.jpg"  alt="jeep" />
+                        <p>Jeep Wrangler</p>
+                </div>
+            
+        </div>
+    </div>
+
+</div>
