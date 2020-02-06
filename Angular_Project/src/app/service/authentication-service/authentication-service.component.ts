@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tokenName } from '@angular/compiler';
 
@@ -16,32 +16,29 @@ export class AuthenticationServiceComponent implements OnInit {
     
   }
   
-  static username: string;
-  static password: string;
+  username: string;
+  password: string;
   
   private token:string = null;
 
-  static login(username: string, password: string): void {
-
-    AuthenticationServiceComponent.username = username;
-    AuthenticationServiceComponent.password = password;
-  }
 
   public isAuthenticated(): boolean {
 
     return this.isAuth;
   }
 
-  login(username: string, password:string):string{
-    const headers = { 'Content-Type': 'application/json'}
-    const body = { username: username, password: password}
-    this.http.post<any>('http://localhost:8080/authentication', body, { headers }).subscribe(response => {
-        this.token = response;
+  login(username: string, password:string){
+
+    var body = {"username": username, "password":password};
+    let url = "/authenticate";
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json"
     });
 
-    console.log(this.token);
-
-    return this.token;
+    this.http.post<any>(url, body, {  headers: headers,
+                                        responseType: "json"
+                        }).subscribe(result => {console.log(result); this.token = result;});
+  
   }
 
   getToken():string {
