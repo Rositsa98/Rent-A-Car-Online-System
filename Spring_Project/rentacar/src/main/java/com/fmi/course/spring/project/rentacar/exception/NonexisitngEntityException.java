@@ -2,7 +2,7 @@ package com.fmi.course.spring.project.rentacar.exception;
 
 public class NonexisitngEntityException extends RuntimeException {
 
-    public NonexisitngEntityException(String message){
+    public NonexisitngEntityException(String message) {
         super(message);
     }
 

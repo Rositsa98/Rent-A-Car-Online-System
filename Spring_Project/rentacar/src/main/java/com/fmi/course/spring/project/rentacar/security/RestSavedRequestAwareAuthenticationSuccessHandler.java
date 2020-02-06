@@ -22,7 +22,7 @@ public class RestSavedRequestAwareAuthenticationSuccessHandler extends SimpleUrl
             HttpServletRequest request,
             HttpServletResponse response,
             Authentication authentication)
-      throws ServletException, IOException {
+            throws ServletException, IOException {
 
         SavedRequest savedRequest
                 = requestCache.getRequest(request, response);

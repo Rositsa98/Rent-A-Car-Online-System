@@ -33,7 +33,7 @@ public class UserService implements IUserService {
 
     @Override
     public User addUser(User user) {
-        if(user.getRoles() == null || user.getRoles().trim().length() == 0) {
+        if (user.getRoles() == null || user.getRoles().trim().length() == 0) {
             user.setRoles("ROLE_USER");
         }
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();

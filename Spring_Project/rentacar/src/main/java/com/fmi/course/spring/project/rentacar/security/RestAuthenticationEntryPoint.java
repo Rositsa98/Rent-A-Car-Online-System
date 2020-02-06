@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component( "restAuthenticationEntryPoint" )
+@Component("restAuthenticationEntryPoint")
 public class RestAuthenticationEntryPoint
         implements AuthenticationEntryPoint {
 
@@ -18,6 +18,6 @@ public class RestAuthenticationEntryPoint
             HttpServletResponse response,
             AuthenticationException authException) throws IOException {
 
-        response.sendError( HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized" );
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
 }

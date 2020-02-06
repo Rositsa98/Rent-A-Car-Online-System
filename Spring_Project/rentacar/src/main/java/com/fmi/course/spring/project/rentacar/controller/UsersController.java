@@ -15,11 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UsersController {
+
     @Autowired
     private UserService usersService;
 
     @GetMapping
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return usersService.findAllUsers();
     }
 
@@ -30,11 +31,11 @@ public class UsersController {
 
     @PostMapping
     public ResponseEntity<User> addUser(@Valid @RequestBody User user, BindingResult bindingResult) {
-        if(bindingResult.hasFieldErrors()) {
-            String  message = bindingResult.getFieldErrors().stream()
+        if (bindingResult.hasFieldErrors()) {
+            String message = bindingResult.getFieldErrors().stream()
                     .map(err -> String.format("Invalid '%s' -> '%s': %s\n",
                             err.getField(), err.getRejectedValue(), err.getDefaultMessage()))
-                    .reduce("", (acc, errStr) -> acc + errStr );
+                    .reduce("", (acc, errStr) -> acc + errStr);
             throw new InvalidEntityException(message);
         }
         User created = usersService.addUser(user);
@@ -45,7 +46,7 @@ public class UsersController {
 
     @PutMapping("{id}")
     public User update(@PathVariable String id, @Valid @RequestBody User user) {
-        if(!id.equals(user.getId())) {
+        if (!id.equals(user.getId())) {
             throw new InvalidEntityException(
                     String.format("Entity ID='%s' is different from URL resource ID='%s'", user.getId(), id));
         }
