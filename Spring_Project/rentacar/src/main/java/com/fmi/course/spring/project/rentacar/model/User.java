@@ -59,6 +59,28 @@ public class User implements UserDetails {
                 .collect(Collectors.toList());
     }
 
+    public String getRoles() {
+        return roles;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return active;
