@@ -6,20 +6,21 @@ import { tokenName } from '@angular/compiler';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationServiceComponent implements OnInit {
 
-  isAuth:boolean = false;
-  
-  ngOnInit(): void {
-    
+  constructor(private http: HttpClient) {
+
   }
 
-  constructor(private http: HttpClient){
-    
-  }
-  
+  isAuth = false;
+
   username: string;
   password: string;
-  
-  private token:string = null;
+
+  private token: string = null;
+
+  // tslint:disable-next-line:contextual-lifecycle
+  ngOnInit(): void {
+
+  }
 
 
   public isAuthenticated(): boolean {
@@ -27,21 +28,21 @@ export class AuthenticationServiceComponent implements OnInit {
     return this.isAuth;
   }
 
-  login(username: string, password:string){
+  login(username: string, password: string) {
 
-    var body = {"username": username, "password":password};
-    let url = "/authenticate";
-    let headers = new HttpHeaders({
-      "Content-Type": "application/json"
+    const body = {username, password};
+    const url = '/authenticate';
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
     });
 
-    this.http.post<any>(url, body, {  headers: headers,
-                                        responseType: "json"
-                        }).subscribe(result => {console.log(result); this.token = result;});
-  
+    this.http.post<any>(url, body, {  headers,
+                                        responseType: 'json'
+                        }).subscribe(result => {console.log(result); this.token = result; });
+
   }
 
-  getToken():string {
+  getToken(): string {
     return this.token;
   }
 

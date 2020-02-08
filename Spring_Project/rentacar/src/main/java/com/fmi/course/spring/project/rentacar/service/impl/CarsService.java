@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -51,6 +52,11 @@ public class CarsService  implements ICarsService {
         }
         carsRepository.deleteById(carId);
         return old.get();
+    }
+
+    @Override
+    public List<String> listModelsOfCars() {
+        return carsRepository.findAll().stream().map(car -> car.getModel()).collect(Collectors.toList());
     }
 
     @Override

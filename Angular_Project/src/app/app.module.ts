@@ -14,6 +14,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { AuthenticationServiceComponent } from './service/authentication-service/authentication-service.component';
 import { AuthenticationGuardComponent } from './guard/authentication-guard/authentication-guard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CarService} from './service/cars/car.service';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
- 
+
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule, CarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

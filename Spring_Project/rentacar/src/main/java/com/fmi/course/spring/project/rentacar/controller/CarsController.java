@@ -26,7 +26,10 @@ public class CarsController {
     public Car getCarById(@PathVariable("id") String carId) {
         return carsService.findCarById(carId);
     }
-
+    @GetMapping("models")
+    public List<String> getModelsOfCars() {
+        return carsService.listModelsOfCars();
+    }
     @PostMapping
     public ResponseEntity<Car> addCar(@Valid @RequestBody Car car, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {

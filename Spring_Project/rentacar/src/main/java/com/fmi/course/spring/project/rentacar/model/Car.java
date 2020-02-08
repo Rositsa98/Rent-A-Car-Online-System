@@ -29,4 +29,8 @@ public class Car {
     public String getId() {
         return id;
     }
+    public String getModel() {
+        return model;
+    }
+
 }

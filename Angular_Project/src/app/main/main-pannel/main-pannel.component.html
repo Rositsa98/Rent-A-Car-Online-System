@@ -7,17 +7,20 @@
             <option value="2">Option 2</option>
             <option value="3">Option 3</option>
         </select>
-
+      <select class="mdb-select md-form" id="select-model" >
+        <option value="" disabled selected>Choose model</option>
+        <option *ngFor=" let model of models" value="model" >{{model}}</option>
+      </select>
         <mat-form-field class="datepickers">
                 <input matInput [matDatepicker]="picker1" placeholder="From date">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker> 
+                <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field class="datepickers">
                 <input matInput [matDatepicker]="picker2" placeholder="To date">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker> 
+                <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
 
         <button class="btn btn-primary" id="search-btn" routerLink="/main" class="btn btn-primary">Search</button>
@@ -30,13 +33,13 @@
                 <div class="img-with-text">
                         <img src="../../../assets/images/shelby_car.jpg"  alt="ford" />
                         <p>Ford Mustang Shelby</p>
-                
 
-             
+
+
                         <img src="../../../assets/images/wrangler_4.jpg"  alt="jeep" />
                         <p>Jeep Wrangler</p>
                 </div>
-            
+
         </div>
     </div>
 

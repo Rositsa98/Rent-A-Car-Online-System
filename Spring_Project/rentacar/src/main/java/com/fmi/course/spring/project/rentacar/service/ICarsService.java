@@ -15,6 +15,8 @@ public interface ICarsService {
 
     Car deleteCar(String id);
 
+    List<String> listModelsOfCars();
+
     Car findCarByModel(String model);
 
     long count();
