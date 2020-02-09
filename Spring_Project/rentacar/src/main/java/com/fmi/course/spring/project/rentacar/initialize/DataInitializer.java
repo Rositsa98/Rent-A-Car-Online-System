@@ -12,6 +12,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Component
@@ -23,12 +25,26 @@ public class DataInitializer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        log.info("Initializing application...");
         if (usersService.count() == 0) {
-            User user = new User(null, "admin", "admin123&", "Admin", "Admin", "Admin", "088",
-                    "ROLE_ADMIN", true, LocalDateTime.now(), LocalDateTime.now());
-//            log.info("Creating root admin user: {}", user.getUsername());
-            usersService.addUser(user);
+
+            List<String> adminRoles = new ArrayList<>();
+            adminRoles.add("ROLE_ADMIN");
+            List<String> userRoles = new ArrayList<>();
+            userRoles.add("ROLE_USER");
+            List<String> operatorRoles = new ArrayList<>();
+            operatorRoles.add("ROLE_OPERATOR");
+
+            User userAdmin = new User(null, "admin", "admin123&", "Admin", "Admin", "Admin", "088",
+                    adminRoles, true, LocalDateTime.now(), LocalDateTime.now());
+            usersService.addUser(userAdmin);
+
+            User userNormal = new User(null, "user", "user", "User", "User", "User", "088",
+                    userRoles, true, LocalDateTime.now(), LocalDateTime.now());
+            usersService.addUser(userNormal);
+
+            User userOperator = new User(null, "operator", "admin123&", "Operator", "Operator", "Operator", "088",
+                    operatorRoles, true, LocalDateTime.now(), LocalDateTime.now());
+            usersService.addUser(userOperator);
         }
         if(carsService.count() == 0) {
             Car car = new Car(null, "bmw", 50000.50, 5,4,true,true,true);

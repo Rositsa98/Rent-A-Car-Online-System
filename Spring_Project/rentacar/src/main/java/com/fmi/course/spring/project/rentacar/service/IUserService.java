@@ -20,4 +20,6 @@ public interface IUserService {
     User findUserByUsername(String username);
 
     long count();
+
+    List<String> findUserRoles(String username);
 }

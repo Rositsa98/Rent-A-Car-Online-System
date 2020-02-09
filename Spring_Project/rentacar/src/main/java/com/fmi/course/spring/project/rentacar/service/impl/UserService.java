@@ -10,6 +10,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +34,10 @@ public class UserService implements IUserService {
 
     @Override
     public User addUser(User user) {
-        if (user.getRoles() == null || user.getRoles().trim().length() == 0) {
-            user.setRoles("ROLE_USER");
+        if (user.getRoles() == null || user.getRoles().size() == 0) {
+            List<String> roles = new ArrayList<>();
+            roles.add("ROLE_USER");
+            user.setRoles(roles);
         }
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         return usersRepository.insert(user);
@@ -71,5 +74,10 @@ public class UserService implements IUserService {
     @Override
     public long count() {
         return usersRepository.count();
+    }
+
+    @Override
+    public List<String> findUserRoles(String username) {
+        return usersRepository.findByUsername(username).get().getRoles();
     }
 }

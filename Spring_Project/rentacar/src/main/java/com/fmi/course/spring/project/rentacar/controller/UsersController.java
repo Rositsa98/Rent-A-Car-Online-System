@@ -58,4 +58,20 @@ public class UsersController {
         return usersService.deleteUser(id);
     }
 
+    @RequestMapping(value = "/roles", method = RequestMethod.GET)
+    public String getUserRoles(@RequestHeader String username) {
+        List<String> roles = usersService.findUserRoles(username);
+
+        for (String role : roles) {
+            if (role.equals("ROLE_ADMIN")) {
+                return "Admin";
+
+            }
+            if (role.equals("ROLE_OPERATOR")) {
+                return "Operator";
+            }
+        }
+        return "User";
+    }
+
 }

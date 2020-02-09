@@ -10,29 +10,26 @@ import { Router } from '@angular/router';
 })
 export class LoginPannelComponent implements OnInit {
 
-  title:string = "Login";
+  title: string = "Login";
 
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
- 
+
   private isInvalidLogin = false;
 
-  constructor(private authService: AuthenticationServiceComponent, private route:Router) { }
+  constructor(private authService: AuthenticationServiceComponent, private route: Router) { }
 
   ngOnInit() {
   }
 
-  login(){
-    var result = this.authService.login(this.loginForm.get("username").value, 
-    this.loginForm.get("password").value);
-
-    if(result!=""){
-      this.route.navigateByUrl("/main");
-    } else{
-      this.isInvalidLogin = true;
-    }
+  login() {
+    var result = this.authService.login(this.loginForm.get("username").value,
+      this.loginForm.get("password").value).then(redirectUrl => {
+        this.route.navigateByUrl(redirectUrl);
+        window.location.reload;
+      });
   }
 
 }

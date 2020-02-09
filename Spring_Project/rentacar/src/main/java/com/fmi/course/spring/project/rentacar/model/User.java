@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Document(collection = "users")
@@ -41,7 +42,7 @@ public class User implements UserDetails {
 
     private String phoneNumber;
 
-    private String roles;
+    private List<String> roles;
 
     private boolean active = true;
 
@@ -51,14 +52,15 @@ public class User implements UserDetails {
     @PastOrPresent
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime modified = LocalDateTime.now();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(roles.split("\\s*,\\s*")).stream()
+        return roles.stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
 
-    public String getRoles() {
+    public List<String> getRoles() {
         return roles;
     }
 
@@ -66,7 +68,7 @@ public class User implements UserDetails {
         return id;
     }
 
-    public void setRoles(String roles) {
+    public void setRoles(List<String> roles) {
         this.roles = roles;
     }
 
