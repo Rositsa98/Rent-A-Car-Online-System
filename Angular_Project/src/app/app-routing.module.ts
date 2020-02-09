@@ -5,23 +5,28 @@ import { RegistrationPannelComponent } from './registration/registration-pannel/
 import { MainPannelComponent } from './main/main-pannel/main-pannel.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 
-const routes: Routes = [ 
-  { 
+const routes: Routes = [
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   },
-  { 
-    path: 'login', component: LoginPannelComponent 
+  {
+    path: 'login', component: LoginPannelComponent
   },
   {
-    path: 'register', component:RegistrationPannelComponent
+    path: 'register', component: RegistrationPannelComponent
   },
   {
+<<<<<<< HEAD
     path:'main', component:MainPannelComponent
+=======
+    // path:'main', component:MainPannelComponent, canActivate: [AuthenticationGuardComponent]
+    path: 'main', component: MainPannelComponent
+>>>>>>> 68fcb30bb3de48aa3a11c4180cd3183bd471059b
   },
   {
-    path:'statistics', component:StatisticsComponent
+    path: 'statistics', component: StatisticsComponent
   }
 ];
 
