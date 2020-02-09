@@ -4,7 +4,6 @@ import { LoginPannelComponent } from './login/login-pannel/login-pannel.componen
 import { RegistrationPannelComponent } from './registration/registration-pannel/registration-pannel.component';
 import { MainPannelComponent } from './main/main-pannel/main-pannel.component';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { AuthenticationGuardComponent } from './guard/authentication-guard/authentication-guard.component';
 
 const routes: Routes = [ 
   { 
@@ -19,7 +18,7 @@ const routes: Routes = [
     path: 'register', component:RegistrationPannelComponent
   },
   {
-    path:'main', component:MainPannelComponent, canActivate: [AuthenticationGuardComponent]
+    path:'main', component:MainPannelComponent
   },
   {
     path:'statistics', component:StatisticsComponent

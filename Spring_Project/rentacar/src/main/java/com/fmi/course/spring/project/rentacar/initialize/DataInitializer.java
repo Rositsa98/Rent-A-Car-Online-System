@@ -26,5 +26,4 @@ public class DataInitializer implements ApplicationRunner {
             usersService.addUser(user);
         }
     }
-
 }

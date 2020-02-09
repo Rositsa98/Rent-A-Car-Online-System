@@ -11,9 +11,6 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {MatInputModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { AuthenticationServiceComponent } from './service/authentication-service/authentication-service.component';
-import { AuthenticationGuardComponent } from './guard/authentication-guard/authentication-guard.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,8 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginPannelComponent,
     RegistrationPannelComponent,
     MainPannelComponent,
-    StatisticsComponent,
-
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
+    BrowserAnimationsModule
  
   ],
   providers: [MatDatepickerModule],
