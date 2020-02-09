@@ -35,5 +35,4 @@ public class DataInitializer implements ApplicationRunner {
             carsService.addCar(car);
         }
     }
-
 }
