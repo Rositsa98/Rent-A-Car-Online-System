@@ -15,7 +15,7 @@ export class AuthenticationServiceComponent implements OnInit {
   username: string;
   password: string;
 
-  private token: string = null;
+  private token: MyJSON = null;
 
   // tslint:disable-next-line:contextual-lifecycle
   ngOnInit(): void {
@@ -27,23 +27,37 @@ export class AuthenticationServiceComponent implements OnInit {
 
     return this.isAuth;
   }
+  
 
-  login(username: string, password: string) {
+  login(username: string, password: string):string {
 
     const body = {username, password};
-    const url = '/authenticate';
+    const url = '/rentacar/authenticate';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
     this.http.post<any>(url, body, {  headers,
-                                        responseType: 'json'
-                        }).subscribe(result => {console.log(result); this.token = result; });
+                        }).toPromise()
+                        .then(result => {
+                           this.token = result; 
+                          console.log("HEREEE" + this.token.jwt); 
+                          
+                          
+                          localStorage.setItem("token", this.token.jwt);
+                          
+                        });
+
+     return this.token!=null ? this.token.jwt : "";
 
   }
 
   getToken(): string {
-    return this.token;
+    return this.token.jwt;
   }
 
+}
+
+interface MyJSON {
+  jwt: string;
 }

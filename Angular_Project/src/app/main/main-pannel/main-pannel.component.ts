@@ -16,7 +16,9 @@ export class MainPannelComponent implements OnInit {
   optionsSelect: Array<any>;
 
   ngOnInit() {
-    this.getCars();
+
+    this.getModels();
+
     this.optionsSelect = [
       { value: '1', label: 'Option 1' },
       { value: '2', label: 'Option 2' },

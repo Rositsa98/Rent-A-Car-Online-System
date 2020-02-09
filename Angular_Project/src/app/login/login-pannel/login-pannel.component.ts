@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AuthenticationServiceComponent } from 'src/app/service/authentication-service/authentication-service.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-pannel',
@@ -15,10 +17,22 @@ export class LoginPannelComponent implements OnInit {
     password: new FormControl(''),
   });
  
+  private isInvalidLogin = false;
 
-  constructor() { }
+  constructor(private authService: AuthenticationServiceComponent, private route:Router) { }
 
   ngOnInit() {
+  }
+
+  login(){
+    var result = this.authService.login(this.loginForm.get("username").value, 
+    this.loginForm.get("password").value);
+
+    if(result!=""){
+      this.route.navigateByUrl("/main");
+    } else{
+      this.isInvalidLogin = true;
+    }
   }
 
 }
