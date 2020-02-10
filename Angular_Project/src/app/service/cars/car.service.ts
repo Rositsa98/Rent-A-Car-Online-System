@@ -22,4 +22,24 @@ export class CarService {
   getLocations() {
     return this.http.get('/rentacar/api/cars/locations', httpOptions);
   }
+
+  addCar(model, price, seats, doors, automatic, airConditioning, available, imageURL, location):Promise<string>{
+    const body = { model, price, seats, doors, automatic, 
+    airConditioning, available, imageURL, location };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.post<string>("/rentacar/api/cars", body, {
+      headers,
+    }).toPromise()
+      .then(result => {
+        return result;
+      })
+  }
+
+  deleteCar(id:string){
+    return this.http.delete('/rentacar/api/cars/'+id, httpOptions);
+  }
 }

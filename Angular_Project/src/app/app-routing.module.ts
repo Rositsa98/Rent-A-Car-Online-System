@@ -6,6 +6,8 @@ import { MainPannelComponent } from './main/main-pannel/main-pannel.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { AdminPannelComponent } from './admin/admin-pannel/admin-pannel/admin-pannel.component';
 import { IndexPannelComponent } from './index/index-pannel/index-pannel/index-pannel.component';
+import { AddUserComponent } from './add-user/add-user.component';
+import { AddCarComponent } from './add-car/add-car.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,12 @@ const routes: Routes = [
   },
   {
     path:'index', component:IndexPannelComponent
+  },
+  {
+    path:"addUser", component:AddUserComponent
+  },
+  {
+    path:"addCar", component:AddCarComponent
   }
 ];
 
