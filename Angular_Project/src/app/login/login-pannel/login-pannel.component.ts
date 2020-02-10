@@ -27,6 +27,10 @@ export class LoginPannelComponent implements OnInit {
   login() {
     var result = this.authService.login(this.loginForm.get("username").value,
       this.loginForm.get("password").value).then(redirectUrl => {
+        if(redirectUrl === "/login" || redirectUrl === "" || redirectUrl === null){
+          this.isInvalidLogin = true;
+          window.location.reload;
+        }
         this.route.navigateByUrl(redirectUrl);
         window.location.reload;
       });

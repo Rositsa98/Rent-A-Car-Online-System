@@ -15,6 +15,9 @@ import { AuthenticationServiceComponent } from './service/authentication-service
 import { AuthenticationGuardComponent } from './guard/authentication-guard/authentication-guard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarService} from './service/cars/car.service';
+import { AdminPannelComponent } from './admin/admin-pannel/admin-pannel/admin-pannel.component';
+import { IndexPannelComponent } from './index/index-pannel/index-pannel/index-pannel.component';
+import {RegistrationService} from './service/registration/registration.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { CarService} from './service/cars/car.service';
     LoginPannelComponent,
     RegistrationPannelComponent,
     MainPannelComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    AdminPannelComponent,
+    IndexPannelComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { CarService} from './service/cars/car.service';
     ReactiveFormsModule,
 
   ],
-  providers: [MatDatepickerModule, CarService],
+  providers: [MatDatepickerModule, CarService, RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

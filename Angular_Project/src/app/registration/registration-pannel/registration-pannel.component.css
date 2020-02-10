@@ -307,3 +307,7 @@
       padding: 60px 50px;
     }
   }
+
+  #errorMessage{
+    color:red;
+  }

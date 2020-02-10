@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tokenName } from '@angular/compiler';
 import { RequestOptions } from '@angular/http';
@@ -7,7 +7,7 @@ import { RequestOptions } from '@angular/http';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationServiceComponent implements OnInit {
 
-  constructor(private http: HttpClient, private http2: HttpClient) {
+  constructor(private http: HttpClient) {
 
   }
 
@@ -38,8 +38,6 @@ export class AuthenticationServiceComponent implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    var roles;
-
     var redirectUrl = null;
 
     return this.http.post<any>(loginUrl, body, {
@@ -47,20 +45,21 @@ export class AuthenticationServiceComponent implements OnInit {
     }).toPromise()
       .then(result => {
         this.token = result;
-        console.log("HEREEE" + this.token.jwt);
+        console.log("Authentication token: " + this.token.jwt);
         localStorage.setItem("token", this.token.jwt);
 
       })
       .then(result => {
-        roles = this.getRoles(username);
-        return roles;
+        return this.getRoles(username);
       }
       )
-      .then(roles => { console.log("second" + roles); return roles; })
-
       .then(roles => {
-        console.log("determine"); redirectUrl = this.determineRedirectByRole(roles);
-
+        console.log("User roles:" + roles);
+        console.log("Determining redirect url" ); 
+        return redirectUrl = this.determineRedirectByRole(roles);
+      }
+      )
+      .then(redirectUrl =>{
         return redirectUrl != null ? redirectUrl : "/login";
       }
       )
@@ -80,7 +79,7 @@ export class AuthenticationServiceComponent implements OnInit {
     }
     return this.http.get<string>(rolesUrl, { headers, responseType: 'text' as 'json' }).toPromise().then(data => {
       roles = data;
-      console.log("getRoles" + data);
+      console.log("getRoles of user:" + data);
       return roles;
     });
   }
@@ -88,9 +87,9 @@ export class AuthenticationServiceComponent implements OnInit {
 
   determineRedirectByRole(role: string): string {
     switch (role) {
-      case "Admin": return "/";
+      case "Admin": return "/admin";
       case "User": return "/main";
-      case "Operator": return "/register";
+      case "Operator": return "/index";
     }
   }
 

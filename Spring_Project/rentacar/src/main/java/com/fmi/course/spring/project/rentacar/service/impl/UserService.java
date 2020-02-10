@@ -3,6 +3,7 @@ package com.fmi.course.spring.project.rentacar.service.impl;
 import com.fmi.course.spring.project.rentacar.dao.IUsersRepository;
 import com.fmi.course.spring.project.rentacar.exception.NonexisitngEntityException;
 import com.fmi.course.spring.project.rentacar.model.User;
+import com.fmi.course.spring.project.rentacar.model.registration.RegistrationRequest;
 import com.fmi.course.spring.project.rentacar.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,12 +36,20 @@ public class UserService implements IUserService {
 
     @Override
     public User addUser(User user) {
+
+        Optional<User> old = usersRepository.findByUsername(user.getUsername());
+
+        if(old.isPresent()){
+            return null;
+        }
+
         if (user.getRoles() == null || user.getRoles().size() == 0) {
             List<String> roles = new ArrayList<>();
             roles.add("ROLE_USER");
             user.setRoles(roles);
         }
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
         return usersRepository.insert(user);
     }
 
@@ -79,5 +89,24 @@ public class UserService implements IUserService {
     @Override
     public List<String> findUserRoles(String username) {
         return usersRepository.findByUsername(username).get().getRoles();
+    }
+
+    @Override
+    public User convertRegistrationRequestToUser(RegistrationRequest registrationRequest) {
+        User user = new User();
+        user.setUsername(registrationRequest.getUsername());
+        user.setPassword(registrationRequest.getPassword());
+        List<String> roles = new ArrayList<>();
+        roles.add("ROLE_USER");
+        user.setRoles(roles);
+        user.setActive(true);
+        user.setCreated(LocalDateTime.now());
+        user.setFirstName(registrationRequest.getFirstName());
+        user.setLastName(registrationRequest.getLastName());
+        user.setPhoneNumber(registrationRequest.getPhone());
+        user.setModified(LocalDateTime.now());
+        user.setPictureUrl(null);
+
+        return user;
     }
 }

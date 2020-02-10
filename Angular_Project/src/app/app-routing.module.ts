@@ -4,6 +4,8 @@ import { LoginPannelComponent } from './login/login-pannel/login-pannel.componen
 import { RegistrationPannelComponent } from './registration/registration-pannel/registration-pannel.component';
 import { MainPannelComponent } from './main/main-pannel/main-pannel.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { AdminPannelComponent } from './admin/admin-pannel/admin-pannel/admin-pannel.component';
+import { IndexPannelComponent } from './index/index-pannel/index-pannel/index-pannel.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,12 @@ const routes: Routes = [
   },
   {
     path: 'statistics', component: StatisticsComponent
+  },
+  {
+    path: 'admin', component:AdminPannelComponent
+  },
+  {
+    path:'index', component:IndexPannelComponent
   }
 ];
 

@@ -2,6 +2,8 @@ package com.fmi.course.spring.project.rentacar.controller;
 
 import com.fmi.course.spring.project.rentacar.exception.InvalidEntityException;
 import com.fmi.course.spring.project.rentacar.model.User;
+import com.fmi.course.spring.project.rentacar.model.authentication.AuthenticationResponse;
+import com.fmi.course.spring.project.rentacar.model.registration.RegistrationRequest;
 import com.fmi.course.spring.project.rentacar.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -72,6 +74,21 @@ public class UsersController {
             }
         }
         return "User";
+    }
+
+    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+    public ResponseEntity<User> registerUser(@RequestBody RegistrationRequest registrationRequest) {
+        User user = usersService.convertRegistrationRequestToUser(registrationRequest);
+        User resultUser = usersService.addUser(user);
+
+
+        if(resultUser == null){
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        return ResponseEntity.created(
+                ServletUriComponentsBuilder.fromCurrentRequest().pathSegment("{id}").build(resultUser.getId()))
+                .body(resultUser);
     }
 
 }

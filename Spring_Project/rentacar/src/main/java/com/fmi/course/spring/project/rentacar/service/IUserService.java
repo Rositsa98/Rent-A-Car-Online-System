@@ -1,6 +1,7 @@
 package com.fmi.course.spring.project.rentacar.service;
 
 import com.fmi.course.spring.project.rentacar.model.User;
+import com.fmi.course.spring.project.rentacar.model.registration.RegistrationRequest;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface IUserService {
     long count();
 
     List<String> findUserRoles(String username);
+
+    User convertRegistrationRequestToUser(RegistrationRequest registrationRequest);
 }
