@@ -26,6 +26,25 @@ export class CarService {
   }
   updateCar(id: string, car: any) {
     return this.http.put('/rentacar/api/cars/' + id, car, httpOptions);
+  }
+  addCar(model, price, seats, doors, automatic, airConditioning, available, imageURL, location): Promise<string> {
+    const body = { model, price, seats, doors, automatic,
+    airConditioning, available, imageURL, location };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.post<string>('/rentacar/api/cars', body, {
+      headers,
+    }).toPromise()
+      .then(result => {
+        return result;
+      });
+  }
+
+  deleteCar(id: string) {
+    return this.http.delete('/rentacar/api/cars/' + id, httpOptions);
 
   }
 }

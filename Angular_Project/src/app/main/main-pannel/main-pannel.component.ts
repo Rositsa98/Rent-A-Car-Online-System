@@ -68,28 +68,43 @@ export class MainPannelComponent implements OnInit {
     });
   }
   filterByModel() {
-    if (!this.cars) { return []; }
-    if (!this.selectedModel) { return this.cars; }
+    console.log('filter by model...');
+    if (!this.cars) { console.log('empty'); return []; }
+    if (!this.selectedModel) {console.log('model'); return this.cars; }
     return this.cars.filter( car => {
+      console.log('here');
       return car.model.includes(this.selectedModel);
     });
   }
   filterCars() {
     if (this.selectedLocation === '' && this.selectedModel === '') {
       console.log('No selected values' + 'Loc:' + this.selectedLocation + '  Mod:' + this.selectedModel);
+      // this.cars = this.initialCars;
+      this.toBeUpdate = false;
       return this.cars;
     }
     if (this.selectedLocation !== '' && this.selectedModel === '') {
       console.log('Selected value for location: ' + 'Loc:' + this.selectedLocation + '  Mod:' + this.selectedModel);
+      // this.cars = this.initialCars;
+      this.toBeUpdate = false;
       return this.filterByLocation();
     }
     if (this.selectedLocation === '' && this.selectedModel !== '') {
       console.log('Selected value for model:' + 'Loc:' + this.selectedLocation + '  Mod:' + this.selectedModel);
+      // this.cars = this.initialCars;
+      this.toBeUpdate = false;
       return this.filterByModel();
     }
     if (this.selectedLocation !== '' && this.selectedModel !== '') {
       console.log('Selected values for both' + 'Loc:' + this.selectedLocation + '  Mod:' + this.selectedModel);
       this.cars = this.filterByLocation();
+
+      // this.cars = this.initialCars;
+      this.toBeUpdate = false;
+
+      this.cars = this.filterByLocation();
+      // console.log(this.cars[0].location);
+
       return this.filterByModel();
     }
     // this.cars = this.initialCars;

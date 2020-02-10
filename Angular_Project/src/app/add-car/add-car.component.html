@@ -1,0 +1,42 @@
+<div class="page-wrapper bg p-t-180 p-b-100 font-robo">
+        <div class="wrapper wrapper--w960">
+            <div class="card card-2">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Add Cars</h2>
+                    <form [formGroup]="carsForm">
+
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Model" formControlName="model">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="number" step="any" placeholder="Price" formControlName="price">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="number" placeholder="Seats" formControlName="seats">
+                        </div>
+
+                        <div class="input-group">
+                                <input class="input--style-2" type="number" placeholder="Doors" formControlNameme="doors">
+                            </div>
+                       
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Automatic - true or false" formControlName="automatic">
+                        </div>
+
+                        <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="Image URL" formControlName="imageURL">
+                        </div>
+
+                        <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="Location" formControlName="location">
+                        </div>
+
+                        <div class="p-t-30">
+                            <button class="btn btn--radius btn--green" type="submit" (click)="sumbitData()">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

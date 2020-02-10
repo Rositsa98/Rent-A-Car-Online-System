@@ -1,1 +1,70 @@
-<p>admin-pannel works!</p>
+<button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="viewUsers()">Users</button>
+<button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="viewCars()">Cars</button>
+<button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="viewProfits()">Profits</button>
+
+<div class="main-content-users" *ngIf="isViewUsers">
+       
+            <table class="table table-bordered table-inverse" id="info-table-users">
+                <tr>   
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Phone</th>
+                </tr>
+
+                <div class="users" *ngFor="let user of this.users" >
+                        <div class="row">
+                <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.phone}}</td>
+                    <th>
+
+                        <button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="deleteUser(user.id)">Delete User</button>
+
+                    </th>
+                </tr>
+
+            </div>
+        </div>
+            </table>
+      
+            
+            <button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="addUser()">Add User</button>
+
+</div>
+
+
+
+
+<div class="main-content-cars" *ngIf="isViewCars">
+        <div class="cars" *ngFor="let car of this.cars" >
+          <div class="row">
+                <table class="table table-bordered table-inverse" id="info-table">
+                        <tr><th>Model:</th><td>{{car.model}}</td></tr>
+                        <tr><th>Price:</th><td>{{car.price}}</td></tr>
+                        <tr><th>Seats:</th><td>{{car.seats}}</td></tr>
+                        <tr><th>Doors:</th> <td>{{car.doors}}</td></tr>
+                        <tr><th>Automatic:</th> <td>{{car.automatic}}</td></tr>
+                        <tr><th>AirConditioning:</th><td>{{car.airConditioning}}</td></tr>
+                        <tr><th>Available:</th> <td>{{car.available}}</td></tr>
+                        <tr><th>Location:</th><td>{{car.location}}</td></tr>
+                        <tr>
+                        <th>
+
+                                <button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="deleteCar(car.id)">Delete Car</button>
+        
+                        </th>
+                        </tr>
+                </table>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="addCar()">Add Car</button>
+</div>
+
+         
+      

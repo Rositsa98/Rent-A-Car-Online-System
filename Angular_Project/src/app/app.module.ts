@@ -20,6 +20,11 @@ import { IndexPannelComponent } from './index/index-pannel/index-pannel/index-pa
 import {RegistrationService} from './service/registration/registration.service';
 import { FilterPipe } from './service/cars/filter.pipe';
 import { ReservationComponent } from './reservation/reservation.component';
+import {UserService} from './service/users/user.service';
+import {AdminService} from './service/admin/admin.service';
+import { AddUserComponent } from './add-user/add-user.component';
+import { AddCarComponent } from './add-car/add-car.component';
+
 
 
 @NgModule({
@@ -32,7 +37,10 @@ import { ReservationComponent } from './reservation/reservation.component';
     AdminPannelComponent,
     IndexPannelComponent,
     FilterPipe,
-    ReservationComponent
+    ReservationComponent,
+    AddUserComponent,
+    AddCarComponent
+
 
   ],
   imports: [
@@ -49,7 +57,7 @@ import { ReservationComponent } from './reservation/reservation.component';
     ReactiveFormsModule,
 
   ],
-  providers: [MatDatepickerModule, CarService, RegistrationService],
+  providers: [MatDatepickerModule, CarService, RegistrationService, UserService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
