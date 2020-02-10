@@ -1,7 +1,7 @@
 #select-location{
     border-color: transparent;
     border-radius: 0%;
-    margin-left: 22%;
+    margin-left: 0%;
     margin-top: 5%;
     height: 60px;
     width: 222px;
@@ -10,7 +10,23 @@
     background-color: transparent;
     margin-right: 2%;
 }
-
+#select-model{
+  border-color: transparent;
+  border-radius: 0%;
+  margin-left: 5%;
+  margin-top: 5%;
+  height: 60px;
+  width: 222px;
+  font-style: italic;
+  font-size: medium;
+  background-color: transparent;
+  margin-right: 2%;
+}
+#info-table{
+  margin-left: 10%;
+  height: 300px;
+  width: 450px;
+}
 .datepickers{
     margin-top:5%;
     margin-right:2%;
@@ -26,17 +42,17 @@
 .img-with-text {
     text-align: justify;
 }
- 
+
 .img-with-text img {
     display: block;
     width: 450px;
-    height: 310px;
+    height: 320px;
 }
 
 .img-with-text-2 {
     text-align: justify;
     }
- 
+
 .img-with-text-2 img {
     display: block;
     width: 450px;

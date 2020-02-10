@@ -18,6 +18,8 @@ import { CarService} from './service/cars/car.service';
 import { AdminPannelComponent } from './admin/admin-pannel/admin-pannel/admin-pannel.component';
 import { IndexPannelComponent } from './index/index-pannel/index-pannel/index-pannel.component';
 import {RegistrationService} from './service/registration/registration.service';
+import { FilterPipe } from './service/cars/filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {RegistrationService} from './service/registration/registration.service';
     MainPannelComponent,
     StatisticsComponent,
     AdminPannelComponent,
-    IndexPannelComponent
+    IndexPannelComponent,
+    FilterPipe
+
   ],
   imports: [
     BrowserModule,

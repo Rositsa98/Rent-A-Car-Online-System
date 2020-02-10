@@ -53,6 +53,9 @@ public class User implements UserDetails {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime modified = LocalDateTime.now();
 
+//    public User(String id, String username, String password, String pictureUrl, String firstName, String lastName, String phoneNumber, List<String> roles, boolean active, LocalDateTime created, LocalDateTime modified) {
+//    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()

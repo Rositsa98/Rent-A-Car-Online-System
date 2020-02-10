@@ -25,6 +25,11 @@ public class Car {
     private boolean automatic;
     private boolean airConditioning;
     private boolean available;
+    private String imageURL;
+    private String location;
+
+//    public Car(String id, String model, double price, int seats, int doors, boolean automatic, boolean airConditioning, boolean available) {
+//    }
 
     public String getId() {
         return id;
@@ -33,4 +38,7 @@ public class Car {
         return model;
     }
 
+    public String getLocation() {
+        return location;
+    }
 }

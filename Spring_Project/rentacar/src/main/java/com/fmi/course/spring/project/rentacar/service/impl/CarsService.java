@@ -58,6 +58,10 @@ public class CarsService  implements ICarsService {
     public List<String> listModelsOfCars() {
         return carsRepository.findAll().stream().map(car -> car.getModel()).collect(Collectors.toList());
     }
+    @Override
+    public List<String> listLocationsOfCars() {
+        return carsRepository.findAll().stream().map(car -> car.getLocation()).collect(Collectors.toList());
+    }
 
     @Override
     public Car findCarByModel(String model) {

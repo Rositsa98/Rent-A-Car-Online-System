@@ -30,6 +30,10 @@ public class CarsController {
     public List<String> getModelsOfCars() {
         return carsService.listModelsOfCars();
     }
+    @GetMapping("locations")
+    public List<String> getLocationsOfCars() {
+        return carsService.listLocationsOfCars();
+    }
     @PostMapping
     public ResponseEntity<Car> addCar(@Valid @RequestBody Car car, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {

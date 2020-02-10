@@ -17,6 +17,8 @@ public interface ICarsService {
 
     List<String> listModelsOfCars();
 
+    List<String> listLocationsOfCars();
+
     Car findCarByModel(String model);
 
     long count();

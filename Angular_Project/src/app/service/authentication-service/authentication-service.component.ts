@@ -55,14 +55,14 @@ export class AuthenticationServiceComponent implements OnInit {
       )
       .then(roles => {
         console.log("User roles:" + roles);
-        console.log("Determining redirect url" ); 
+        console.log("Determining redirect url" );
         return redirectUrl = this.determineRedirectByRole(roles);
       }
       )
       .then(redirectUrl =>{
         return redirectUrl != null ? redirectUrl : "/login";
       }
-      )
+      );
 
   }
 
@@ -71,12 +71,12 @@ export class AuthenticationServiceComponent implements OnInit {
   }
 
   getRoles(username: string): Promise<string> {
-    var roles: string;
+    let roles: string;
     const rolesUrl = '/rentacar/api/users/roles';
     const headers = {
-      'Authorization': 'Bearer ' + localStorage.getItem("token"),
-      'username': username
-    }
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+      username: username
+    };
     return this.http.get<string>(rolesUrl, { headers, responseType: 'text' as 'json' }).toPromise().then(data => {
       roles = data;
       console.log("getRoles of user:" + data);
