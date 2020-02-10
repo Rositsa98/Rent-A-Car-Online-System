@@ -38,7 +38,13 @@
     margin-left: 3%;
     background-color: black;
 }
-
+#reserve-btn{
+  height: 50px;
+  width: 400px;
+  margin-top: 2%;
+  margin-left: 0%;
+  background-color: black;
+}
 .img-with-text {
     text-align: justify;
 }

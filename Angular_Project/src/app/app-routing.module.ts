@@ -6,6 +6,7 @@ import { MainPannelComponent } from './main/main-pannel/main-pannel.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { AdminPannelComponent } from './admin/admin-pannel/admin-pannel/admin-pannel.component';
 import { IndexPannelComponent } from './index/index-pannel/index-pannel/index-pannel.component';
+import {ReservationComponent} from './reservation/reservation.component';
 
 const routes: Routes = [
   {
@@ -24,13 +25,16 @@ const routes: Routes = [
     path: 'main', component: MainPannelComponent
   },
   {
+    path: 'reserve/:id', component: ReservationComponent
+  },
+  {
     path: 'statistics', component: StatisticsComponent
   },
   {
-    path: 'admin', component:AdminPannelComponent
+    path: 'admin', component: AdminPannelComponent
   },
   {
-    path:'index', component:IndexPannelComponent
+    path: 'index', component: IndexPannelComponent
   }
 ];
 

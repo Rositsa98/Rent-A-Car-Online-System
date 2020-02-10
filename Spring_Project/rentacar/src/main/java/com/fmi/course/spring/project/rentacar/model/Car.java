@@ -27,6 +27,7 @@ public class Car {
     private boolean available;
     private String imageURL;
     private String location;
+    private User resUser;
 
 //    public Car(String id, String model, double price, int seats, int doors, boolean automatic, boolean airConditioning, boolean available) {
 //    }

@@ -13,13 +13,19 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   getCars() {
-    console.log(httpOptions);
-    return this.http.get('/rentacar/api/cars', httpOptions); // it is better to be server instead of authenticate in the proxy
+    return this.http.get('/rentacar/api/cars', httpOptions);
+  }
+  getCarById(id: string) {
+    return this.http.get('/rentacar/api/cars/' + id, httpOptions);
   }
   getModels() {
     return this.http.get('/rentacar/api/cars/models', httpOptions);
   }
   getLocations() {
     return this.http.get('/rentacar/api/cars/locations', httpOptions);
+  }
+  updateCar(id: string, car: any) {
+    return this.http.put('/rentacar/api/cars/' + id, car, httpOptions);
+
   }
 }

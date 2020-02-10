@@ -9,11 +9,12 @@ import {CarService} from '../../service/cars/car.service';
 })
 export class MainPannelComponent implements OnInit {
   public cars;
-  public initialCars;
+  // public initialCars;
   public models;
   public locations;
   selectedLocation: string;
   selectedModel: string;
+  currentCaId;
   toBeUpdate: boolean;
 
   constructor(private carService: CarService) {
@@ -37,7 +38,7 @@ export class MainPannelComponent implements OnInit {
       err => console.log(err),
       () => console.log('cars loaded')
     );
-    this.initialCars = this.cars;
+    // this.initialCars = this.cars;
     console.log('Json array cars:' + this.cars);
   }
 
@@ -88,14 +89,16 @@ export class MainPannelComponent implements OnInit {
     }
     if (this.selectedLocation !== '' && this.selectedModel !== '') {
       console.log('Selected values for both' + 'Loc:' + this.selectedLocation + '  Mod:' + this.selectedModel);
-      this.cars = this.filterByLocation()
+      this.cars = this.filterByLocation();
       return this.filterByModel();
     }
-    this.cars = this.initialCars;
+    // this.cars = this.initialCars;
 
     }
-  onClick() {
-    this.toBeUpdate = true;
+  onClick(id: string) {
+    this.currentCaId = id;
+
+    // this.toBeUpdate = true;
 
   }
   // filterThroughCars() {

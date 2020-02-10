@@ -19,6 +19,7 @@ import { AdminPannelComponent } from './admin/admin-pannel/admin-pannel/admin-pa
 import { IndexPannelComponent } from './index/index-pannel/index-pannel/index-pannel.component';
 import {RegistrationService} from './service/registration/registration.service';
 import { FilterPipe } from './service/cars/filter.pipe';
+import { ReservationComponent } from './reservation/reservation.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FilterPipe } from './service/cars/filter.pipe';
     StatisticsComponent,
     AdminPannelComponent,
     IndexPannelComponent,
-    FilterPipe
+    FilterPipe,
+    ReservationComponent
 
   ],
   imports: [
