@@ -8,7 +8,9 @@ export class AuthenticationGuardComponent implements CanActivate {
   constructor(public auth: AuthenticationServiceComponent, public router: Router) { }
 
   canActivate(): boolean {
-    if (!this.auth.isAuthenticated()) {
+    console.log(localStorage.getItem("token"));
+
+    if (localStorage.getItem("token")==null || localStorage.getItem("token")=="") {
       this.router.navigate(['login']);
       alert("Wrong username or password!")
       return false;
