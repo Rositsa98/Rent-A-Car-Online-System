@@ -4,7 +4,7 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Add User</h2>
-                    <form [formGroup]="registrationForm">
+                    <form [formGroup]="addUserForm">
                         <div id="errorMessage" *ngIf="regError">User with such username already exists!</div>
 
                         <div class="input-group">
@@ -18,11 +18,11 @@
                         </div>
 
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Last Name" formControlNameme="lastName">
+                            <input class="input--style-2" type="text" placeholder="Last Name" formControlName="lastName">
                         </div>
 
                         <div class="input-group">
-                                <input class="input--style-2" type="text" placeholder="Role" formControlNameme="role">
+                                <input class="input--style-2" type="text" placeholder="Role" formControlName="role">
                             </div>
                        
                         <div class="input-group">

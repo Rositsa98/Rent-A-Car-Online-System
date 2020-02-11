@@ -96,8 +96,13 @@ public class UserService implements IUserService {
         User user = new User();
         user.setUsername(registrationRequest.getUsername());
         user.setPassword(registrationRequest.getPassword());
+
         List<String> roles = new ArrayList<>();
-        roles.add("ROLE_USER");
+        if(registrationRequest.getRole()!=null && registrationRequest.getRole()!=""){
+            roles.add(registrationRequest.getRole());
+        } else{
+            roles.add("ROLE_USER");
+        }
         user.setRoles(roles);
         user.setActive(true);
         user.setCreated(LocalDateTime.now());

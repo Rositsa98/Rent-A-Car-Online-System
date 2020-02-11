@@ -13,6 +13,7 @@ export class AdminPannelComponent implements OnInit {
 
   isViewUsers:boolean = false;
   isViewCars:boolean = false;
+  isViewProfits:boolean = false;
 
 
   public users;
@@ -53,11 +54,21 @@ export class AdminPannelComponent implements OnInit {
   viewUsers(){
     this.isViewUsers = true;
     this.isViewCars = false;
+    this.isViewProfits = false;
   }
 
   viewCars(){
     this.isViewUsers = false;
     this.isViewCars = true;
+    this.isViewProfits = false;
+  }
+
+  viewProfits(){
+    this.isViewUsers = false;
+    this.isViewCars = false;
+    this.isViewProfits = true;
+
+    this.router.navigateByUrl("/statistics");
   }
 
   addUser(){

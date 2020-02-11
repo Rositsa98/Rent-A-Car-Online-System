@@ -8,6 +8,7 @@ public class RegistrationRequest implements Serializable {
     private String password;
     private String firstName;
     private String lastName;
+    private String role;
     private String phone;
 
 
@@ -15,11 +16,12 @@ public class RegistrationRequest implements Serializable {
 
     }
 
-    public RegistrationRequest(String username, String password, String firstName, String lastName, String phone) {
+    public RegistrationRequest(String username, String password, String firstName, String lastName, String role, String phone) {
         this.setUsername(username);
         this.setPassword(password);
         this.setFirstName(firstName);
         this.setLastName(lastName);
+        this.setRole(role);
         this.setPhone(phone);
     }
 
@@ -62,5 +64,13 @@ public class RegistrationRequest implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

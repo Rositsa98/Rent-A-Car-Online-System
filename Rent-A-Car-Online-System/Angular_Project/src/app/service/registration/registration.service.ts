@@ -9,14 +9,13 @@ export class RegistrationService {
   constructor(private http: HttpClient) { }
 
   registerUser(username:string, password:string,
-    firstName:string, lastName:string,role:string, phone:string ):Promise<boolean>{
+    firstName:string, lastName:string, role:string, phone:string ):Promise<boolean>{
 
     const body = { username, password, firstName, lastName, role, phone };
     const registerUrl = '/rentacar/api/users/registerUser';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
     console.log(body);
 
     var redirectUrl = null;

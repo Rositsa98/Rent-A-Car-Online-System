@@ -37,7 +37,7 @@ export class RegistrationPannelComponent implements OnInit {
     console.log(lastName);
     console.log(phone);
 
-    var result = this.registrationService.registerUser(username, password, firstName, lastName,null, phone)
+    var result = this.registrationService.registerUser(username, password, firstName, null, lastName, phone)
     .then(result => { if(result===true) {this.route.navigateByUrl("/main"); window.location.reload;} 
                       else {this.regError = true;} window.location.reload; });
 

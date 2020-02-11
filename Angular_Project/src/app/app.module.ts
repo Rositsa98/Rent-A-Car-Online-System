@@ -25,7 +25,8 @@ import {AdminService} from './service/admin/admin.service';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddCarComponent } from './add-car/add-car.component';
 
-
+import { GoogleChartsModule } from 'angular-google-charts';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { AddCarComponent } from './add-car/add-car.component';
     FilterPipe,
     ReservationComponent,
     AddUserComponent,
-    AddCarComponent
+    AddCarComponent,
 
 
   ],
@@ -55,9 +56,10 @@ import { AddCarComponent } from './add-car/add-car.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    GoogleChartsModule
 
   ],
-  providers: [MatDatepickerModule, CarService, RegistrationService, UserService, AdminService],
+  providers: [MatDatepickerModule, CarService, RegistrationService, UserService, AdminService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

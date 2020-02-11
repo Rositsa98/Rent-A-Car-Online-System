@@ -17,7 +17,7 @@ export class AddUserComponent implements OnInit {
   ngOnInit() {
   }
 
-  registrationForm = new FormGroup({
+  addUserForm = new FormGroup({
     name: new FormControl(''),
     password: new FormControl(''),
     firstName: new FormControl(''),
@@ -28,15 +28,16 @@ export class AddUserComponent implements OnInit {
 
 
   sumbitData(){
-    var username = this.registrationForm.get("name").value;
-    var password = this.registrationForm.get("password").value;
-    var firstName = this.registrationForm.get("firstName").value;
-    var lastName = this.registrationForm.get("lastName").value;
-    var role = this.registrationForm.get("role").value;
-    var phone = this.registrationForm.get("phone").value;
+    var username = this.addUserForm.get("name").value;
+    var password = this.addUserForm.get("password").value;
+    var firstName = this.addUserForm.get("firstName").value;
+    var lastName = this.addUserForm.get("lastName").value;
+    var role = this.addUserForm.get("role").value;
+    var phone = this.addUserForm.get("phone").value;
 
+    console.log(role);
 
-    var result = this.registrationService.registerUser(username, password, firstName, lastName, phone)
+    var result = this.registrationService.registerUser(username, password, firstName, lastName,role, phone)
     .then(result => { if(result===true) {this.route.navigateByUrl("/admin"); window.location.reload;} 
                       else {this.regError = true;} window.location.reload; });
 
