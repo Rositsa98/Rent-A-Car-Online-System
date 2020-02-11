@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+
+    <select class="mdb-select md-form" id="select-first-car" [(ngModel)]="firstCarModel">
+      <option value="" >Pick first car</option>
+      <option *ngFor="let model of models">{{model}}</option>
+    </select>
+    <select class="mdb-select md-form" id="select-second-car" [(ngModel)]="secondCarModel">
+      <option value="" >Pick second car</option>
+      <option *ngFor=" let model of models"  >{{model}}</option>
+    </select>
+
+    <button class="btn btn-primary" id="compare-btn" class="btn btn-primary" (click)="onClick()" >Compare</button>
+  </div>
+  <div class="report-content" *ngIf="carsReport">
+    <div class="report">
+      <div class="row" >
+        <div class="column" *ngFor="let car of cars">
+          <div class="pick1"  *ngIf="car.model == firstCarModel">
+            <table class="table table-bordered table-inverse"  id="car1-table">
+              <tr><th>Model:</th><td>{{car.model}}</td></tr>
+              <tr><th>Price:</th><td>{{car.price}}</td></tr>
+              <tr><th>Seats:</th><td>{{car.seats}}</td></tr>
+              <tr><th>Doors:</th> <td>{{car.doors}}</td></tr>
+              <tr><th>Automatic:</th> <td>{{car.automatic}}</td></tr>
+              <tr><th>AirConditioning:</th><td>{{car.airConditioning}}</td></tr>
+              <tr><th>Available:</th> <td>{{car.available}}</td></tr>
+              <tr><th>Location:</th><td>{{car.location}}</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="column" *ngFor="let car of cars">
+          <div class="pick2" *ngIf="car.model == secondCarModel">
+            <table class="table table-bordered table-inverse"  id="car2-table">
+              <tr><th>Model:</th><td>{{car.model}}</td></tr>
+              <tr><th>Price:</th><td>{{car.price}}</td></tr>
+              <tr><th>Seats:</th><td>{{car.seats}}</td></tr>
+              <tr><th>Doors:</th> <td>{{car.doors}}</td></tr>
+              <tr><th>Automatic:</th> <td>{{car.automatic}}</td></tr>
+              <tr><th>AirConditioning:</th><td>{{car.airConditioning}}</td></tr>
+              <tr><th>Available:</th> <td>{{car.available}}</td></tr>
+              <tr><th>Location:</th><td>{{car.location}}</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="main-content">
+  <div class="cars" *ngFor="let car of cars">
+    <div class="row">
+      <div class="column" class="img-with-text">
+        <img src="{{car.imageURL}}"  alt="image" />
+      </div>
+      <div class="column">
+        <table class="table table-bordered table-inverse" id="info1-table">
+          <tr><th>Model:</th><td>{{car.model}}</td></tr>
+          <tr><th>Price:</th><td>{{car.price}}</td></tr>
+          <tr><th>Seats:</th><td>{{car.seats}}</td></tr>
+          <tr><th>Doors:</th> <td>{{car.doors}}</td></tr>
+          <tr><th>Automatic:</th> <td>{{car.automatic}}</td></tr>
+          <tr><th>AirConditioning:</th><td>{{car.airConditioning}}</td></tr>
+          <tr><th>Available:</th> <td>{{car.available}}</td></tr>
+          <tr><th>Location:</th><td>{{car.location}}</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

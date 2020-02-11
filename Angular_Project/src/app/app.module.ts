@@ -24,6 +24,7 @@ import {UserService} from './service/users/user.service';
 import {AdminService} from './service/admin/admin.service';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddCarComponent } from './add-car/add-car.component';
+import { CompareCarsComponent } from './compare/compare-cars/compare-cars.component';
 
 
 
@@ -39,7 +40,8 @@ import { AddCarComponent } from './add-car/add-car.component';
     FilterPipe,
     ReservationComponent,
     AddUserComponent,
-    AddCarComponent
+    AddCarComponent,
+    CompareCarsComponent
 
 
   ],

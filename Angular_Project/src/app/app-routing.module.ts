@@ -9,6 +9,7 @@ import { IndexPannelComponent } from './index/index-pannel/index-pannel/index-pa
 import {ReservationComponent} from './reservation/reservation.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddCarComponent } from './add-car/add-car.component';
+import {CompareCarsComponent} from "./compare/compare-cars/compare-cars.component";
 
 
 const routes: Routes = [
@@ -26,6 +27,9 @@ const routes: Routes = [
   {
     // path:'main', component:MainPannelComponent, canActivate: [AuthenticationGuardComponent]
     path: 'main', component: MainPannelComponent
+  },
+  {
+    path: 'compare', component: CompareCarsComponent
   },
   {
     path: 'reserve/:id', component: ReservationComponent
