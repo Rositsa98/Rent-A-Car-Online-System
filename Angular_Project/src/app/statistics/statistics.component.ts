@@ -38,23 +38,24 @@ export class StatisticsComponent implements OnInit {
 
     var fromTo = this.adminService.getCarsFromDateToDate(from, to).then(result => console.log(result));
 
-    this.instanceCarDays = deserialize(fromTo, Environment, Environment.carDays);
-    console.log(this.instanceCarDays);
+    // this.instanceCarDays = deserialize(fromTo, Environment, Environment.carDays);
+    console.log(fromTo);
 
-    var avalableCars = this.adminService.getAvailableCars().then(availableCars => console.log(availableCars));
+    var availableCars = this.adminService.getAvailableCars().then(availableCars => console.log(availableCars));
 
+    console.log(availableCars);
   }
 
   title = 'This week has number of car rents:'
    type = 'ComboChart';
    data = [
-      ["Monday", this.instanceCarDays.monday],
-      ["Tuesday",this.instanceCarDays.tuesday],
-      ["Wednesday", this.instanceCarDays.wednesday],
-      ["Thursday", this.instanceCarDays.thursday],
-      ["Friday", this.instanceCarDays.friday],
-      ["Saturday", this.instanceCarDays.saturday],
-      ["Sunday", this.instanceCarDays.sunday],
+      ["Monday", 0],
+      ["Tuesday",0],
+      ["Wednesday", 3],
+      ["Thursday", 0],
+      ["Friday", 0],
+      ["Saturday", 0],
+      ["Sunday", 5],
    ];
 
    columnNames = ['Week days', 'Rented cars'];
@@ -71,7 +72,8 @@ export class StatisticsComponent implements OnInit {
   data2 = [
           ['bmw', 16],
           ['peugeot', 20],
-          ['НХГ', 5]
+          ['mercedes', 5],
+          ['audi', 18]
   ];
 }
 
@@ -92,8 +94,7 @@ module Environment {
 }
 
 function deserialize(json, environment, carDays) {
-    var carDays = new carDays();
-    var instance = carDays;
+    var instance = new carDays();
     for(var prop in json) {
         if(!json.hasOwnProperty(prop)) {
             continue;
