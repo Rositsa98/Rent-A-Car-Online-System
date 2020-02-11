@@ -41,6 +41,13 @@
 #reserve-btn{
   height: 50px;
   width: 400px;
+  margin-top: 0%;
+  margin-left: 0%;
+  background-color: black;
+}
+#compare-btn{
+  height: 50px;
+  width: 400px;
   margin-top: 2%;
   margin-left: 0%;
   background-color: black;

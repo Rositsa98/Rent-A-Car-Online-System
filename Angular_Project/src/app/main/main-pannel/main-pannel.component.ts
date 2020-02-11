@@ -9,18 +9,15 @@ import {CarService} from '../../service/cars/car.service';
 })
 export class MainPannelComponent implements OnInit {
   public cars;
-  // public initialCars;
   public models;
   public locations;
   selectedLocation: string;
   selectedModel: string;
   currentCaId;
-  toBeUpdate: boolean;
+  toBeSearch = false;
 
   constructor(private carService: CarService) {
   }
-
-  optionsSelect: Array<any>;
 
   ngOnInit() {
     this.getLocations();
@@ -28,7 +25,9 @@ export class MainPannelComponent implements OnInit {
     this.getCars();
 
   }
-
+  onSearch() {
+    this.toBeSearch = true;
+  }
   getCars() {
     this.carService.getCars().subscribe(
       data => {
@@ -38,7 +37,6 @@ export class MainPannelComponent implements OnInit {
       err => console.log(err),
       () => console.log('cars loaded')
     );
-    // this.initialCars = this.cars;
     console.log('Json array cars:' + this.cars);
   }
 
@@ -60,83 +58,10 @@ export class MainPannelComponent implements OnInit {
       () => console.log('locations loaded')
     );
   }
-  filterByLocation() {
-    if (!this.cars) { return []; }
-    if (!this.selectedLocation) { return this.cars; }
-    return this.cars.filter( car => {
-      return car.location.includes(this.selectedLocation);
-    });
-  }
-  filterByModel() {
-    console.log('filter by model...');
-    if (!this.cars) { console.log('empty'); return []; }
-    if (!this.selectedModel) {console.log('model'); return this.cars; }
-    return this.cars.filter( car => {
-      console.log('here');
-      return car.model.includes(this.selectedModel);
-    });
-  }
-  filterCars() {
-    if (this.selectedLocation === '' && this.selectedModel === '') {
-      console.log('No selected values' + 'Loc:' + this.selectedLocation + '  Mod:' + this.selectedModel);
-      // this.cars = this.initialCars;
-      this.toBeUpdate = false;
-      return this.cars;
-    }
-    if (this.selectedLocation !== '' && this.selectedModel === '') {
-      console.log('Selected value for location: ' + 'Loc:' + this.selectedLocation + '  Mod:' + this.selectedModel);
-      // this.cars = this.initialCars;
-      this.toBeUpdate = false;
-      return this.filterByLocation();
-    }
-    if (this.selectedLocation === '' && this.selectedModel !== '') {
-      console.log('Selected value for model:' + 'Loc:' + this.selectedLocation + '  Mod:' + this.selectedModel);
-      // this.cars = this.initialCars;
-      this.toBeUpdate = false;
-      return this.filterByModel();
-    }
-    if (this.selectedLocation !== '' && this.selectedModel !== '') {
-      console.log('Selected values for both' + 'Loc:' + this.selectedLocation + '  Mod:' + this.selectedModel);
-      this.cars = this.filterByLocation();
 
-      // this.cars = this.initialCars;
-      this.toBeUpdate = false;
-
-      this.cars = this.filterByLocation();
-      // console.log(this.cars[0].location);
-
-      return this.filterByModel();
-    }
-    // this.cars = this.initialCars;
-
-    }
   onClick(id: string) {
     this.currentCaId = id;
-
-    // this.toBeUpdate = true;
-
   }
-  // filterThroughCars() {
-  //   console.log('InFilter')
-  //   console.log('SelectedLoc:' + this.selectedLocation)
-  //   console.log('SelectedModel:' + this.selectedModel)
-  //
-  //   if (this.selectedLocation === '' && this.selectedLocation === '') {
-  //     this.cars = [];
-  //   }
-  //   if (this.selectedLocation != null && this.selectedModel == null) {
-  //     this.cars.filter( car => car.location === this.selectedLocation);
-  //   }
-  //   if (this.selectedLocation == null && this.selectedModel != null) {
-  //     this.cars.filter( car => car.model === this.selectedModel);
-  //   }
-  //   if (this.selectedLocation != null && this.selectedModel != null) {
-  //     this.cars.filter ( car => car.location === this.selectedLocation && car.model === this.selectedModel);
-  //   }
-  //   window.location.reload();
-  //
-  //
-  // }
 }
 interface Car {
   id: string;

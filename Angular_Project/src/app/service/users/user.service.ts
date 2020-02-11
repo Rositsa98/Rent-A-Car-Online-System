@@ -9,14 +9,14 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  
+
   constructor(private http: HttpClient) { }
 
-  getAllUsers(){
+  getAllUsers() {
     return this.http.get('/rentacar/api/users', httpOptions);
   }
 
-  deleteUser(id:string){
-    return this.http.delete('/rentacar/api/users/'+id, httpOptions);
+  deleteUser(id: string) {
+    return this.http.delete('/rentacar/api/users/' + id, httpOptions);
   }
 }

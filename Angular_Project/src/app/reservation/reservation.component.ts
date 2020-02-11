@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CarService} from '../service/cars/car.service';
+import {Car, CarService} from '../service/cars/car.service';
 import { ActivatedRoute } from '@angular/router';
+import {Observable} from 'rxjs';
 
 
 @Component({
@@ -18,10 +19,13 @@ export class ReservationComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getCarById(this.id);
-    this.updateCar(this.id, this.currentCar);
+    console.log(this.currentCar.model);
+    // this.updatedCar = this.updateCar(this.id);
+    // console.log('Updated car' + this.updatedCar);
   }
   getCarById(id: string) {
-    this.carService.getCarById(id).subscribe(
+    this.carService.getCarById(id)
+      .subscribe(
       data => {
         console.log('Data' + data);
         this.currentCar = data;
@@ -30,33 +34,17 @@ export class ReservationComponent implements OnInit {
       () => console.log('car loaded by id')
     );
   }
-  updateCar(id: string , car: any) {
+  updateCar(id: string ): Promise<string> {
     console.log('UPDATE');
+    console.log('id ' + id);
     // const body = { this.currentCar.id, this.currentCar.model, this.currentCar.price, this.currentCar.seats,
     //   this.currentCar.doors, this.currentCar.automatic, this.currentCar.airConditioning, this.currentCar.available,
     //   this.currentCar.imageURL, this.currentCar.location};
-    this.carService.updateCar(id , car).subscribe(
-      data => {
-        this.updatedCar = data;
-      },
-      err => console.log(err),
-      () => console.log('car updated by id')
+    // this.currentCar =  this.getCarById(id);
+    console.log('model' + this.currentCar.model);
+    return this.carService.updateCar(id , this.currentCar.model, this.currentCar.price, this.currentCar.seats, this.currentCar.doors,
+      this.currentCar.automatic, this.currentCar.airConditioning, false, this.currentCar.imageURL, this.currentCar.location);
 
-    );
   }
-
-}
-interface Car {
-  id: string;
-  model: string;
-  price: number;
-  seats: number;
-  doors: number;
-  automatic: boolean;
-  airConditioning: boolean;
-  available: boolean;
-  imageURL: string;
-  location: string;
-
 
 }
