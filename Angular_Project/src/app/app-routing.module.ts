@@ -11,7 +11,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AddCarComponent } from './add-car/add-car.component';
 import {CompareCarsComponent} from "./compare/compare-cars/compare-cars.component";
 import { AuthenticationGuardComponent } from './guard/authentication-guard/authentication-guard.component';
-
+import {AdminViewGuardComponent} from './guard/admin-view-guard/admin-view-guard.component';
 
 const routes: Routes = [
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
     path: 'statistics', component: StatisticsComponent, canActivate: [AuthenticationGuardComponent]
   },
   {
-    path: 'admin', component: AdminPannelComponent, canActivate: [AuthenticationGuardComponent]
+    path: 'admin', component: AdminPannelComponent, canActivate: [AdminViewGuardComponent]
   },
   {
 

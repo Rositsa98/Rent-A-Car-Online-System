@@ -28,6 +28,7 @@ import { CompareCarsComponent } from './compare/compare-cars/compare-cars.compon
 
 import { GoogleChartsModule } from 'angular-google-charts';
 import { DatePipe } from '@angular/common';
+import { AdminViewGuardComponent } from './guard/admin-view-guard/admin-view-guard.component';
 
 @NgModule({
   declarations: [

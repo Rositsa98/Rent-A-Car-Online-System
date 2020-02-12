@@ -23,6 +23,7 @@ export class CarService {
   getLocations() {
     return this.http.get('/rentacar/api/cars/locations', httpOptions);
   }
+
   updateCar(id: string, model, price, seats, doors, automatic, airConditioning, available, imageURL, location): Promise<string> {
     console.log('Here in update service method');
     const body = { model, price, seats, doors, automatic,
@@ -35,6 +36,7 @@ export class CarService {
         return result;
       });
   }
+  
   addCar(model, price, seats, doors, automatic, airConditioning, available, imageURL, location): Promise<string> {
     const body = { model, price, seats, doors, automatic,
     airConditioning, available, imageURL, location };

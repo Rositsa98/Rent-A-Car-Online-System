@@ -42,52 +42,41 @@
 
 
 <div class="main-content-cars" *ngIf="isViewCars">
-    <div class="cars" *ngFor="let car of this.cars">
-        <div class="row">
+
             <table class="table table-bordered table-inverse" id="info-table">
-                <tr>
-                    <th>Model:</th>
-                    <td>{{car.model}}</td>
-                </tr>
-                <tr>
-                    <th>Price:</th>
-                    <td>{{car.price}}</td>
-                </tr>
-                <tr>
-                    <th>Seats:</th>
-                    <td>{{car.seats}}</td>
-                </tr>
-                <tr>
-                    <th>Doors:</th>
-                    <td>{{car.doors}}</td>
-                </tr>
-                <tr>
-                    <th>Automatic:</th>
-                    <td>{{car.automatic}}</td>
-                </tr>
-                <tr>
-                    <th>AirConditioning:</th>
-                    <td>{{car.airConditioning}}</td>
-                </tr>
-                <tr>
-                    <th>Available:</th>
-                    <td>{{car.available}}</td>
-                </tr>
-                <tr>
-                    <th>Location:</th>
-                    <td>{{car.location}}</td>
-                </tr>
-                <tr>
-                    <th>
 
-                        <button class="btn btn-primary" id="search-btn" class="btn btn-primary"
-                            (click)="deleteCar(car.id)">Delete Car</button>
+                    <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Model</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Seats</th>
+                                <th scope="col">Doors</th>
+                                <th scope="col">Automatic</th>
+                                <th scope="col">Air conditioning</th>
+                                <th scope="col">Available</th>
+                                <th scope="col">Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let car of this.cars">
+                                    <td>{{car.model}}</td>
+                                    <td>{{car.price}}</td>
+                                    <td>{{car.seats}}</td>
+                                    <td>{{car.doors}}</td>
+                                    <td>{{car.automatic}}</td>
+                                    <td>{{car.airConditioning}}</td>
+                                    <td>{{car.available}}</td>
+                                    <td>{{car.location}}</td>
+                                    <th scope="row">
+                                        <button class="btn btn-primary" id="search-btn" class="btn btn-primary"
+                                            (click)="deleteCar(car.id)">Delete car</button>
+                    
+                                    </th>
+                                </tr>
+                            
+                        </tbody>
 
-                    </th>
-                </tr>
             </table>
-        </div>
-    </div>
 
     <button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="addCar()">Add Car</button>
 </div>

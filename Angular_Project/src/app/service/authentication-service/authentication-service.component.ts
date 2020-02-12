@@ -80,6 +80,7 @@ export class AuthenticationServiceComponent implements OnInit {
     return this.http.get<string>(rolesUrl, { headers, responseType: 'text' as 'json' }).toPromise().then(data => {
       roles = data;
       console.log("getRoles of user:" + data);
+      localStorage.setItem("role", data);
       return roles;
     });
   }
