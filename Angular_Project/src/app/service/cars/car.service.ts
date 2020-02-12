@@ -14,8 +14,8 @@ export class CarService {
   getCars() {
     return this.http.get('/rentacar/api/cars', httpOptions);
   }
-  getCarById(id: string) {
-    return this.http.get('/rentacar/api/cars/' + id, httpOptions);
+  getCarById(id: string):Promise<Object> {
+    return this.http.get('/rentacar/api/cars/' + id, httpOptions).toPromise().then(result =>{ return result;});
   }
   getModels() {
     return this.http.get('/rentacar/api/cars/models', httpOptions);
@@ -26,7 +26,7 @@ export class CarService {
 
   updateCar(id: string, model, price, seats, doors, automatic, airConditioning, available, imageURL, location): Promise<string> {
     console.log('Here in update service method');
-    const body = { model, price, seats, doors, automatic,
+    const body = {id, model, price, seats, doors, automatic,
       airConditioning, available, imageURL, location };
     console.log('Body ' + body);
     return this.http.put<string>('/rentacar/api/cars/' + id, body, httpOptions)
@@ -36,7 +36,7 @@ export class CarService {
         return result;
       });
   }
-  
+
   addCar(model, price, seats, doors, automatic, airConditioning, available, imageURL, location): Promise<string> {
     const body = { model, price, seats, doors, automatic,
     airConditioning, available, imageURL, location };

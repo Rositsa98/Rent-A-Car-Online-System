@@ -19,19 +19,20 @@ export class ReservationComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getCarById(this.id);
-    console.log(this.currentCar.model);
+    // console.log(this.currentCar.model);
     // this.updatedCar = this.updateCar(this.id);
     // console.log('Updated car' + this.updatedCar);
   }
   getCarById(id: string) {
     this.carService.getCarById(id)
-      .subscribe(
+      .then(
       data => {
         console.log('Data' + data);
         this.currentCar = data;
-      },
-      err => console.log(err),
-      () => console.log('car loaded by id')
+      }).then(res => console.log(this.currentCar.model))
+      .then(res => this.updateCar(this.currentCar.id)).catch(
+      err => { console.log(err);
+      console.log('car loaded by id');}
     );
   }
   updateCar(id: string ): Promise<string> {
