@@ -29,7 +29,7 @@ exports.getUsers = function (req, res, next) {
 };
 
 exports.getUserByUsername = function (req, res, next) {
-  Users.get({ username: req.params.username }, function (err, users) {
+  Users.getByUserName({ username: req.params.username }, function (err, users) {
     if (err) {
       res.json({
         error: err,
@@ -37,6 +37,19 @@ exports.getUserByUsername = function (req, res, next) {
     }
     res.json({
       users: users,
+    });
+  });
+};
+
+exports.getUserById = function (req, res, next) {
+  Users.getUserById({ _id: req.params.id }, function (err, user) {
+    if (err) {
+      res.json({
+        error: err,
+      });
+    }
+    res.json({
+      user: user,
     });
   });
 };

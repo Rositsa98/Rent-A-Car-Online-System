@@ -12,7 +12,7 @@ carSchema.statics = {
   },
 
   getCarById: function (query, cb) {
-    this.find(query, cb);
+    this.findOne(query, cb);
   },
 
   update: function (query, updateData, cb) {

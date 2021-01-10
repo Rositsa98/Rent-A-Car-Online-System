@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { Link } from "react-router-dom";
+import "./login.css";
 
 import userService from "../../service/user.service";
 
-import loginImage from "../../assets/images/login-image.png";
-import { Redirect } from "react-router-dom";
-const { config } = require("../../config/config");
+import { createBrowserHistory } from "history";
 
-const APIURL = "http://localhost:3000"; //config.apiUrl;
+const history = createBrowserHistory();
 
 class LoginComponent extends Component {
   state = {
@@ -29,6 +28,7 @@ class LoginComponent extends Component {
     this.setState({ [name]: value });
   }
 
+  //TODO - fix
   login() {
     this.state.isSubmitted = true;
     const { email, password } = this.state;
@@ -36,16 +36,13 @@ class LoginComponent extends Component {
     console.log(`email ${email} and  ${password} logged in`);
 
     if (email && password) {
-      userService.login(email, password).then(
-        (user) => {
-          console.log(user);
-          // return <Redirect to={APIURL + "/index"} />;
-        },
-        (error) => {
-          console.log("ERROR" + error);
-          // <Redirect to={APIURL + "/login"} />;
-        }
-      );
+      let user = userService.login(email, password).get();
+
+      //localStorage.setItem("user", user);
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      //sessionStorage.setItem("user", JSON.stringify(user));
+
+      history.push("/index");
     }
   }
 
@@ -53,40 +50,47 @@ class LoginComponent extends Component {
     const { email, password, isSubmitted } = this.state;
 
     return (
-      <div className="login-page">
-        <h2> Login </h2>
-        <div>
-          <img className="loginImg" src={loginImage}></img>
-          <form className="loginForm">
-            <div className="form-group">
-              <label htmlFor="email">Email: </label>
-              <input
-                type="text"
-                placeholder="Email"
-                name="email"
-                value={email}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password: </label>
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group-btns">
-              <button className="btn btn-primary" onClick={this.login}>
-                Login
-              </button>
-              <Link to="/register" className="btn btn-link">
-                Register
-              </Link>
-            </div>
-          </form>
+      <div className="background-image">
+        <div className="loginPageContent">
+          <div>
+            <form className="loginForm">
+              <div id="title">Login</div>
+
+              <div
+                id="errorMessage"
+                // *ngIf="isInvalidLogin"
+              >
+                {/* Invalid email or password! */}
+              </div>
+
+              <div className="form-group">
+                <input
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  value={email}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={password}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group-btns">
+                <button className="btn btn-primary" onClick={this.login}>
+                  Login
+                </button>
+                <Link to="/register" className="btn btn-primary">
+                  Register
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );

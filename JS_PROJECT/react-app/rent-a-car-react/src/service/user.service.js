@@ -37,12 +37,6 @@ function login(email, password) {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
     },
     body: formBody,
-  }).then((user) => {
-    localStorage.setItem("user", user);
-    // store user details and jwt token in local storage to keep user logged in between page refreshes
-    sessionStorage.setItem("user", JSON.stringify(user));
-
-    return user;
   });
 }
 

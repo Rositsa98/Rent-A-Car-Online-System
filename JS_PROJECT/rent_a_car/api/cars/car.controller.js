@@ -31,14 +31,14 @@ exports.getCars = function (req, res, next) {
 };
 
 exports.getCarById = function (req, res, next) {
-  Cars.get({ id: req.params._id }, function (err, cars) {
+  Cars.getCarById({ _id: req.params.id }, function (err, car) {
     if (err) {
       res.json({
         error: err,
       });
     }
     res.json({
-      cars: cars,
+      car: car,
     });
   });
 };

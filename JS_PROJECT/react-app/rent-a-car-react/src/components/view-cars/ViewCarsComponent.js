@@ -27,14 +27,6 @@ class ViewCarsComponent extends Component {
       });
   }
 
-  handleDeleteCar = (id) => {
-    console.log(id);
-    console.log(`viewCars: handleDeleteCar: about to delete car with id=${id}`);
-    carService.deleteCar(id);
-
-    window.location.reload();
-  };
-
   render() {
     const { cars } = this.state.cars;
     return (
@@ -47,21 +39,11 @@ class ViewCarsComponent extends Component {
 
         <div>
           {this.state.cars.map((car) => {
+            {
+              /* console.log(car); */
+            }
             return <Car key={car._id} car={car} />;
           })}
-        </div>
-        <div className="udpateDeleteSection">
-          {this.state.cars.map((car, index) => (
-            <li key={car._id}>
-              {car.brand + " " + car.model + " (" + car.year + ")"}
-              {
-                <Button onClick={() => this.handleDeleteCar(car._id)}>
-                  Delete
-                </Button>
-              }
-              <Button href={"/edit-car/" + car._id}>Update car</Button>
-            </li>
-          ))}
         </div>
       </div>
     );

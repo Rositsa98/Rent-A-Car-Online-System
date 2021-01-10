@@ -11,6 +11,9 @@ import ViewCarsComponent from "../components/view-cars/ViewCarsComponent";
 import AddCarComponent from "../components/add-car/AddCarComponent";
 import EditCarComponent from "../components/edit-car/EditCarComponent";
 import EditUserComponent from "../components/edit-user/EditUserComponent";
+import ViewCarComponent from "../components/view-car/ViewCarComponent";
+import ViewUserComponent from "../components/view-user/ViewUserComponent";
+import StatisticsComponent from "../components/statistics/StatisticsComponent";
 
 const NavRoute = ({ exact, path, component: Component, isPrivate }) =>
   //config.isUserAuthorized(path)
@@ -52,11 +55,15 @@ class Routes extends Component {
           <Route path="/index" component={Index} />
           <Route path="/login" component={LoginComponent} />
           <Route path="/view-users" component={ViewUsersComponent} />
+          <Route path="/view-user/*" component={ViewUserComponent} />
           <Route path="/edit-user/*" component={EditUserComponent} />
 
           <Route path="/view-cars" component={ViewCarsComponent} />
+          <Route path="/view-car/*" component={ViewCarComponent} />
           <Route path="/addCar" component={AddCarComponent} />
           <Route path="/edit-car/*" component={EditCarComponent} />
+
+          <Route path="/statistics" component={StatisticsComponent} />
 
           <Route path="/logout" component={LogoutComponent} />
           <Route path="/register" component={RegisterComponent} />

@@ -3,6 +3,10 @@ import carService from "../../service/car.service";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
+
 class AddCarComponent extends Component {
   constructor(props) {
     super(props);
@@ -47,112 +51,131 @@ class AddCarComponent extends Component {
       car.seats &&
       car.isAvailable
     ) {
-      carService
-        .addCar(car)
-        .then((resp) => console.log(resp))
-        .then(() => {
-          return <Redirect to={"http://localhost:3000" + "/viewCars"} />;
-        });
+      carService.addCar(car);
+      history.push("/view-cars");
     }
   }
 
   render() {
     const { car } = this.state;
     return (
-      <div className="addCarPage">
-        <h2>Add car in Rent a car online service</h2>
-        <form name="form">
-          <div>
-            <label htmlFor="brand">Brand</label>
-            <input
-              type="text"
-              name="brand"
-              value={car.brand}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="model">Model</label>
-            <input
-              type="text"
-              name="model"
-              value={car.model}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="year">Year</label>
-            <input
-              type="text"
-              name="year"
-              value={car.year}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="seats">Seats</label>
-            <input
-              type="text"
-              name="seats"
-              value={car.seats}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="doors">Doors</label>
-            <input
-              type="text"
-              name="doors"
-              value={car.doors}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="isAvailable">Is available</label>
-            <input
-              type="text"
-              name="isAvailable"
-              value={car.isAvailable}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="price">Price</label>
-            <input
-              type="text"
-              name="price"
-              value={car.price}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="location">Location</label>
-            <input
-              type="text"
-              name="location"
-              value={car.location}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="rentedBy">Rented by</label>
-            <input
-              type="text"
-              name="rentedBy"
-              value={car.rentedBy}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <button className="btn btn-primary" onClick={this.addCar}>
-              Add car
-            </button>
+      <div className="page-wrapper bg p-t-180 p-b-100 font-robo">
+        <div className="wrapper wrapper--w960">
+          <div className="card card-2">
+            <div className="card-heading"></div>
+            <div className="card-body">
+              <h2 className="title">Add Car</h2>
 
-            <Link to="/login" className="btn btn-link">
-              Cancel
-            </Link>
+              <form name="carsForm">
+                <div className="input-group">
+                  <input
+                    className="input--style-2"
+                    type="text"
+                    name="brand"
+                    placeholder="Brand"
+                    value={car.brand}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <input
+                    className="input--style-2"
+                    type="text"
+                    name="model"
+                    placeholder="Model"
+                    value={car.model}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <input
+                    className="input--style-2"
+                    type="text"
+                    name="year"
+                    placeholder="Year"
+                    value={car.year}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <input
+                    className="input--style-2"
+                    type="text"
+                    name="seats"
+                    placeholder="Seats"
+                    value={car.seats}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div clasName="input-group">
+                  <input
+                    className="input--style-2"
+                    type="text"
+                    name="doors"
+                    placeholder="Doors"
+                    value={car.doors}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <input
+                    className="input--style-2"
+                    type="text"
+                    placeholder="Is available"
+                    name="isAvailable"
+                    value={car.isAvailable}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <input
+                    className="input--style-2"
+                    type="text"
+                    placeholder="Price"
+                    name="price"
+                    value={car.price}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <input
+                    className="input--style-2"
+                    type="text"
+                    placeholder="Location"
+                    name="location"
+                    value={car.location}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <input
+                    className="input--style-2"
+                    type="text"
+                    name="rentedBy"
+                    placeholder="Rented by"
+                    value={car.rentedBy}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <div class="p-t-30">
+                    <button
+                      className="btn btn--radius btn--green"
+                      type="submit"
+                      onClick={this.addCar}
+                    >
+                      Add car
+                    </button>
+                  </div>
+
+                  <Link to="/login" className="btn btn-primary">
+                    Cancel
+                  </Link>
+                </div>
+              </form>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
     );
   }

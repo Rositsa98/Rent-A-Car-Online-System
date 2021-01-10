@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import userService from "../../service/user.service";
 import { createBrowserHistory } from "history";
 

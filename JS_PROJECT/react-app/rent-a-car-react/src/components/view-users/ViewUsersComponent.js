@@ -26,16 +26,6 @@ class ViewUsersComponent extends Component {
       });
   }
 
-  handleDeleteUser(id) {
-    console.log(id);
-    console.log(
-      `viewUsers: handleDeleteUser: about to delete user with id=${id}`
-    );
-    userService.deleteUser(id);
-
-    window.location.reload();
-  }
-
   render() {
     return (
       <div className="App">
@@ -47,24 +37,8 @@ class ViewUsersComponent extends Component {
 
         <div>
           {this.state.users.map((user) => {
-            {
-              /* console.log(car); */
-            }
             return <User key={user._id} user={user} />;
           })}
-        </div>
-        <div className="udpateDeleteSection">
-          {this.state.users.map((user, index) => (
-            <li key={user._id}>
-              {user.username + " " + user.firstName}
-              {
-                <Button onClick={() => this.handleDeleteUser(user._id)}>
-                  Delete
-                </Button>
-              }
-              <Button href={"/edit-user/" + user._id}>Update user</Button>
-            </li>
-          ))}
         </div>
       </div>
     );

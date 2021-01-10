@@ -1,16 +1,26 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const socketio = require("socket.io");
 
 const app = express();
 
-const cors = require("cors");
-
-app.use(cors());
 const properties = require("./config/config");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.use(cors({ origin: "http://localhost:3000" }));
+
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 
 const db = require("./config/database");
 db();
@@ -46,6 +56,46 @@ app.get("/", function (req, res) {
 });
 
 // intialise server
-app.listen((PORT = process.env.PORT || 3001), (req, res) => {
+const server = app.listen((PORT = process.env.PORT || 3001), (req, res) => {
   console.log(`Server is running on ${PORT} port.`);
+});
+
+//initialize socket for the server
+const io = socketio(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
+
+let Cars = require("./api/cars/car.dao");
+let carCount;
+Cars.countDocuments({ rentedBy: { $ne: null } }, function (err, count) {
+  carCount = count;
+});
+
+io.on("connection", (socket) => {
+  io.sockets.emit("statistics_update", {
+    message: "update statistics",
+    carCount: carCount,
+  });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+
+  //handle the new message event
+  socket.on("rent_a_car", (data) => {
+    console.log(data.user + " rented car " + data.car);
+
+    Cars.findById(data.car, function (err, car) {
+      car.rentedBy = data.user;
+      car.save();
+    });
+
+    io.sockets.emit("statistics_update", {
+      message: "update statistics",
+      carCount: carCount,
+    });
+  });
 });
