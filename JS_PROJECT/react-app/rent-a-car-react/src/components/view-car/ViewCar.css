@@ -1,0 +1,12 @@
+#ViewCar {
+  margin: 10px;
+}
+
+#carImg {
+  height: 220px;
+  width: 300px;
+}
+
+.button-view-car {
+  background-color: lightblue;
+}

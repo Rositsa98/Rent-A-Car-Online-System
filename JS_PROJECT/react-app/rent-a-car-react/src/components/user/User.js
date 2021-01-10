@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { createBrowserHistory } from "history";
 import userService from "../../service/user.service";
+import "./User.css";
+
 const history = createBrowserHistory();
 
 class User extends Component {
@@ -26,23 +28,25 @@ class User extends Component {
 
     return (
       <div className="User">
-        <Button href={"/view-user/" + user._id}>Show user details</Button>
         <div className="userImg">{user._id}</div>
+
         <div>First name: {user.firstName}</div>
         <div>Last name: {user.lastName}</div>
         <div>Username: {user.username}</div>
         <div>Roles: {user.roles}</div>
         <div>Email: {user.email}</div>
-        <li key={user._id}>
-          {user.username + " " + user.firstName}
-          {
-            <Button onClick={() => this.handleDeleteUser(user._id)}>
-              Delete
-            </Button>
-          }
-          <Button href={"/edit-user/" + user._id}>Update user</Button>
-        </li>
-        ;
+
+        <Button className="btn" onClick={() => this.handleDeleteUser(user._id)}>
+          Delete
+        </Button>
+
+        <Button className="link" href={"/edit-user/" + user._id}>
+          Update
+        </Button>
+
+        <Button className="link" href={"/view-user/" + user._id}>
+          Details
+        </Button>
       </div>
     );
   }

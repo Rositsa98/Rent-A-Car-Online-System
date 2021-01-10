@@ -1,15 +1,27 @@
 import React, { Component } from "react";
-import User from "../user/User";
 import { Button } from "react-bootstrap";
 import config from "../../config/config";
 import userService from "../../service/user.service";
+import "../style/style.css";
+import "./ViewUsersComponent.css";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 const APIURL = config.apiUrl;
 
 class ViewUsersComponent extends Component {
-  state = {
-    users: [],
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      users: [],
+    };
+
+    this.retrieveUsers();
+    this.renderTableData = this.renderTableData.bind(this);
+    this.renderTableHeader = this.renderTableHeader.bind(this);
+  }
 
   componentDidMount() {
     this.retrieveUsers();
@@ -26,20 +38,73 @@ class ViewUsersComponent extends Component {
       });
   }
 
+  handleDeleteUser(id) {
+    console.log(id);
+    console.log(
+      `viewUser: handleDeleteUser: about to delete car with id=${id}`
+    );
+    userService.deleteUser(id).then(() => history.push("/view-users"));
+  }
+
+  renderTableData() {
+    return this.state.users.map((user, index) => {
+      const { id, firstName, lastName, username, roles, email } = user; //destructuring
+      return (
+        <tr key={id}>
+          <td>{firstName}</td>
+          <td>{lastName}</td>
+          <td>{username}</td>
+          <td>{roles}</td>
+          <td>{email}</td>
+
+          <td>
+            <Button
+              className="btn"
+              onClick={() => this.handleDeleteUser(user._id)}
+            >
+              Delete
+            </Button>
+          </td>
+          <td>
+            <Button href={"/edit-user/" + user._id}>Update</Button>
+          </td>
+          <td>
+            <Button href={"/view-user/" + user._id}>Details</Button>
+          </td>
+        </tr>
+      );
+    });
+  }
+
+  renderTableHeader() {
+    let header = [
+      "first name",
+      "last name",
+      "username",
+      "roles",
+      "email",
+      "Delete",
+      "Update",
+      "Details",
+    ];
+    return header.map((key) => {
+      console.log(key);
+      return <th>{key}</th>;
+    });
+  }
+
   render() {
     return (
-      <div className="App">
-        <div>Users in Rent a car online system: </div>
-
+      <div className="ViewUsers">
         <br />
-        <br />
-        <h3> Users: </h3>
+        <h3 className="title"> Users: </h3>
 
-        <div>
-          {this.state.users.map((user) => {
-            return <User key={user._id} user={user} />;
-          })}
-        </div>
+        <table id="users">
+          <tbody>
+            <tr>{this.renderTableHeader()}</tr>
+            {this.renderTableData()}
+          </tbody>
+        </table>
       </div>
     );
   }

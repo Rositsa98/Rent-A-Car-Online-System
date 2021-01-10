@@ -22,6 +22,7 @@ function addCar(car) {
     isAvailable: car.isAvailable,
     rentedBy: "test",
     location: car.location,
+    imageUrl: car.imageUrl,
   };
 
   let formBody = [];
@@ -66,6 +67,7 @@ function updateCar(car, id) {
     isAvailable: car.isAvailable,
     rentedBy: "test",
     location: car.location,
+    imageUrl: car.imageUrl,
   };
 
   let formBody = [];

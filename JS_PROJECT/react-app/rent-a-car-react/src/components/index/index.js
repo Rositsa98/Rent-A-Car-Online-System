@@ -26,21 +26,21 @@ class Index extends Component {
   }
 
   render() {
+    const { cars } = this.state.cars;
     return (
-      <div className="App">
-        <div>Welcome to Rent a car online system! </div>
-
+      <div className="ViewCars">
+        <br />
+        <h2 className="title">Welcome to Rent a car online system! </h2>
         <br />
         <br />
-        <h3> Cars available for rent: </h3>
+        <h3 className="title"> Cars available for rent: </h3>
 
-        <div>
-          {this.state.cars.map((car) => {
-            {
-              /* console.log(car); */
-            }
-            return <Car key={car._id} car={car} />;
-          })}
+        <div className="col-lg-11">
+          <div className="row">
+            {this.state.cars.map((car) => {
+              return <Car key={car._id} car={car} />;
+            })}
+          </div>
         </div>
       </div>
     );

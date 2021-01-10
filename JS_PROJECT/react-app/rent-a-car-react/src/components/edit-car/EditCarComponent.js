@@ -20,6 +20,7 @@ class EditCarComponent extends Component {
         isAvailable: "",
         rentedBy: "",
         location: "",
+        imageUrl: "",
       },
     };
 
@@ -48,7 +49,8 @@ class EditCarComponent extends Component {
       car.doors &&
       car.price &&
       car.seats &&
-      car.isAvailable
+      car.isAvailable &&
+      car.imageUrl
     ) {
       carService.updateCar(car, id);
       history.push("/view-cars");
@@ -139,6 +141,16 @@ class EditCarComponent extends Component {
               type="text"
               name="rentedBy"
               value={car.rentedBy}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="imageUrl">Image url</label>
+            <input
+              type="text"
+              name="imageUrl"
+              value={car.imageUrl}
               onChange={this.handleChange}
             />
           </div>

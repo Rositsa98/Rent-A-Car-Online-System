@@ -17,6 +17,7 @@ class EditUserComponent extends Component {
         lastName: "",
         roles: "",
         password2: "",
+        imageUrl: "",
       },
     };
 
@@ -44,7 +45,8 @@ class EditUserComponent extends Component {
       user.username &&
       user.password &&
       user.password2 &&
-      user.email
+      user.email &&
+      user.imageUrl
     ) {
       userService.updateUser(user, id);
       history.push("/view-users");
@@ -81,6 +83,15 @@ class EditUserComponent extends Component {
               type="text"
               name="lastName"
               value={user.lastName}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="imageUrl">Image url</label>
+            <input
+              type="text"
+              name="imageUrl"
+              value={user.imageUrl}
               onChange={this.handleChange}
             />
           </div>

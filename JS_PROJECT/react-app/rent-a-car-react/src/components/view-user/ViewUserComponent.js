@@ -4,6 +4,7 @@ import userService from "../../service/user.service";
 import config from "../../config/config";
 import { Button } from "react-bootstrap";
 import { createBrowserHistory } from "history";
+import "./ViewUser.css";
 
 const history = createBrowserHistory();
 
@@ -60,30 +61,31 @@ class ViewUserComponent extends Component {
   render() {
     const { user } = this.state;
     return (
-      <div className="App">
-        <div>View more information about user: </div>
+      <div className="ViewUser">
+        <br />
+        <h3 className="title">View more information about user: </h3>
 
         <br />
         <br />
 
         <div className="User">
-          <Button href={"/view-user/" + user._id}>Show user details</Button>
-          <div className="userImg">{user._id}</div>
+          <div className="userImg">
+            <img id="userImg" src={user.imageUrl} />
+          </div>
           <div>First name: {user.firstName}</div>
           <div>Last name: {user.lastName}</div>
           <div>Username: {user.username}</div>
           <div>Roles: {user.roles}</div>
           <div>Email: {user.email}</div>
-          <li key={user._id}>
-            {user.username + " " + user.firstName}
-            {
-              <Button onClick={() => this.handleDeleteUser(user._id)}>
-                Delete
-              </Button>
-            }
-            <Button href={"/edit-user/" + user._id}>Update user</Button>
-          </li>
-          ;
+          <Button
+            className="button-view-user"
+            onClick={() => this.handleDeleteUser(user._id)}
+          >
+            Delete
+          </Button>
+          <Button className="button-view-user" href={"/edit-user/" + user._id}>
+            Update user
+          </Button>
         </div>
       </div>
     );

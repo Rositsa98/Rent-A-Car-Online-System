@@ -40,6 +40,10 @@ const userSchema = mongoose.Schema({
   token: {
     type: String,
   },
+  imageUrl: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = userSchema;

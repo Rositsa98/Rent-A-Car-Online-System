@@ -22,6 +22,7 @@ class AddCarComponent extends Component {
         isAvailable: "",
         rentedBy: "",
         location: "",
+        imageUrl: "",
       },
     };
 
@@ -49,7 +50,8 @@ class AddCarComponent extends Component {
       car.doors &&
       car.price &&
       car.seats &&
-      car.isAvailable
+      car.isAvailable &&
+      car.imageUrl
     ) {
       carService.addCar(car);
       history.push("/view-cars");
@@ -61,15 +63,14 @@ class AddCarComponent extends Component {
     return (
       <div className="page-wrapper bg p-t-180 p-b-100 font-robo">
         <div className="wrapper wrapper--w960">
-          <div className="card card-2">
-            <div className="card-heading"></div>
-            <div className="card-body">
+          <div>
+            <div className=""></div>
+            <div className="">
               <h2 className="title">Add Car</h2>
 
-              <form name="carsForm">
-                <div className="input-group">
+              <form id="carsForm">
+                <div id="input-field-div">
                   <input
-                    className="input--style-2"
                     type="text"
                     name="brand"
                     placeholder="Brand"
@@ -77,9 +78,8 @@ class AddCarComponent extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div className="input-group">
+                <div>
                   <input
-                    className="input--style-2"
                     type="text"
                     name="model"
                     placeholder="Model"
@@ -87,9 +87,8 @@ class AddCarComponent extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div className="input-group">
+                <div>
                   <input
-                    className="input--style-2"
                     type="text"
                     name="year"
                     placeholder="Year"
@@ -97,9 +96,8 @@ class AddCarComponent extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div className="input-group">
+                <div>
                   <input
-                    className="input--style-2"
                     type="text"
                     name="seats"
                     placeholder="Seats"
@@ -107,9 +105,8 @@ class AddCarComponent extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div clasName="input-group">
+                <div>
                   <input
-                    className="input--style-2"
                     type="text"
                     name="doors"
                     placeholder="Doors"
@@ -117,9 +114,8 @@ class AddCarComponent extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div className="input-group">
+                <div>
                   <input
-                    className="input--style-2"
                     type="text"
                     placeholder="Is available"
                     name="isAvailable"
@@ -127,9 +123,8 @@ class AddCarComponent extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div className="input-group">
+                <div>
                   <input
-                    className="input--style-2"
                     type="text"
                     placeholder="Price"
                     name="price"
@@ -137,9 +132,8 @@ class AddCarComponent extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div className="input-group">
+                <div>
                   <input
-                    className="input--style-2"
                     type="text"
                     placeholder="Location"
                     name="location"
@@ -147,9 +141,17 @@ class AddCarComponent extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div className="input-group">
+                <div>
                   <input
-                    className="input--style-2"
+                    type="text"
+                    placeholder="Image url"
+                    name="imageUrl"
+                    value={car.imageUrl}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div>
+                  <input
                     type="text"
                     name="rentedBy"
                     placeholder="Rented by"
@@ -158,7 +160,7 @@ class AddCarComponent extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <div class="p-t-30">
+                  <div className="p-t-30">
                     <button
                       className="btn btn--radius btn--green"
                       type="submit"

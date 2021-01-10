@@ -32,24 +32,48 @@ class Car extends Component {
   render() {
     return (
       <div className="Car">
-        <Button href={"/view-car/" + this.props.car._id}>
-          Show car details
-        </Button>
-        <div className="carImg">{this.props.car._id}</div>
-        <div>
-          {this.props.car.brand}, {this.props.car.model}, {this.props.car.year}
-        </div>
-        <div className="updateDeleteSection">
-          {
-            <Button onClick={() => this.handleDeleteCar(this.props.car._id)}>
-              Delete
-            </Button>
-          }
-          <Button href={"/edit-car/" + this.props.car._id}>Update car</Button>
+        {
+          <div className="card h-100">
+            <div className="card-body">
+              <div className="img">
+                <img className="carImg" src={this.props.car.imageUrl}></img>
+              </div>
+              <div className="carInfo">
+                {this.props.car.brand}, {this.props.car.model},{" "}
+                {this.props.car.year}
+              </div>
+              <div className="updateDeleteSection">
+                {
+                  <button
+                    className="button"
+                    onClick={() => this.handleDeleteCar(this.props.car._id)}
+                  >
+                    Delete
+                  </button>
+                }
+                <Button
+                  href={"/edit-car/" + this.props.car._id}
+                  className="button"
+                >
+                  Update
+                </Button>
 
-          <button onClick={this.rentCar}> Rent</button>
-          {/* TODO pass username too */}
-        </div>
+                <button className="button" onClick={this.rentCar}>
+                  {" "}
+                  Rent
+                </button>
+                {/* TODO pass username too */}
+
+                <Button
+                  href={"/view-car/" + this.props.car._id}
+                  className="button"
+                >
+                  Details
+                </Button>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     );
   }

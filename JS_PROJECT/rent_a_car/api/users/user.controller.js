@@ -64,6 +64,7 @@ exports.updateUser = function (req, res, next) {
     lastName: req.body.lastName,
     roles: req.body.roles,
     password2: req.body.password2,
+    imageUrl: req.body.imageUrl,
   };
 
   Users.update({ _id: req.params.id }, user, function (err, user) {

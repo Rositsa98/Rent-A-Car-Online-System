@@ -54,6 +54,7 @@ exports.updateCar = function (req, res, next) {
     isAvailable: req.body.isAvailable,
     rentedBy: req.body.rentedBy,
     location: req.body.location,
+    imageUrl: req.body.imageUrl,
   };
 
   Cars.update({ _id: req.params.id }, car, function (err, car) {

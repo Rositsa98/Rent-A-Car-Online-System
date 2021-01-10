@@ -14,6 +14,7 @@ import EditUserComponent from "../components/edit-user/EditUserComponent";
 import ViewCarComponent from "../components/view-car/ViewCarComponent";
 import ViewUserComponent from "../components/view-user/ViewUserComponent";
 import StatisticsComponent from "../components/statistics/StatisticsComponent";
+import AppNavbar from "../components/navbar/AppNavbar";
 
 const NavRoute = ({ exact, path, component: Component, isPrivate }) =>
   //config.isUserAuthorized(path)
@@ -35,7 +36,7 @@ const AppRoute = ({ exact, path, component: Component, isPrivate }) => (
     isPrivate={isPrivate}
     render={(props) => (
       <div>
-        {/* <AppNavbar></AppNavbar> */}
+        <AppNavbar></AppNavbar>
         <Component {...props} />
       </div>
     )}
@@ -52,21 +53,21 @@ class Routes extends Component {
       <div>
         <Switch>
           <Redirect exact from="/" to="/index" />
-          <Route path="/index" component={Index} />
+          <AppRoute path="/index" component={Index} />
           <Route path="/login" component={LoginComponent} />
-          <Route path="/view-users" component={ViewUsersComponent} />
-          <Route path="/view-user/*" component={ViewUserComponent} />
-          <Route path="/edit-user/*" component={EditUserComponent} />
+          <AppRoute path="/view-users" component={ViewUsersComponent} />
+          <AppRoute path="/view-user/*" component={ViewUserComponent} />
+          <AppRoute path="/edit-user/*" component={EditUserComponent} />
 
-          <Route path="/view-cars" component={ViewCarsComponent} />
-          <Route path="/view-car/*" component={ViewCarComponent} />
-          <Route path="/addCar" component={AddCarComponent} />
-          <Route path="/edit-car/*" component={EditCarComponent} />
+          <AppRoute path="/view-cars" component={ViewCarsComponent} />
+          <AppRoute path="/view-car/*" component={ViewCarComponent} />
+          <AppRoute path="/addCar" component={AddCarComponent} />
+          <AppRoute path="/edit-car/*" component={EditCarComponent} />
 
-          <Route path="/statistics" component={StatisticsComponent} />
+          <AppRoute path="/statistics" component={StatisticsComponent} />
 
-          <Route path="/logout" component={LogoutComponent} />
-          <Route path="/register" component={RegisterComponent} />
+          <AppRoute path="/logout" component={LogoutComponent} />
+          <AppRoute path="/register" component={RegisterComponent} />
           {/* <Redirect from="*" to="/login" /> */}
         </Switch>
       </div>

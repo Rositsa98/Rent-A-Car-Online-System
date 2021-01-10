@@ -1,0 +1,20 @@
+.title {
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+}
+
+.grid-item {
+  display: inline-flex;
+}
+
+.button {
+  margin: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  border-style: unset;
+  background-color: transparent;
+}

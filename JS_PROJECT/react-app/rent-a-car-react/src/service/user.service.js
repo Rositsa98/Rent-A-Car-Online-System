@@ -59,6 +59,7 @@ function register(user) {
     password2: user.password2,
     email: user.email,
     roles: "normal - user", //TODO
+    imageUrl: user.imageUrl,
   };
 
   let formBody = [];
@@ -90,6 +91,7 @@ function updateUser(user, id) {
     password2: user.password2,
     email: user.email,
     roles: "normal - user", //TODO
+    imageUrl: user.imageUrl,
   };
 
   let formBody = [];

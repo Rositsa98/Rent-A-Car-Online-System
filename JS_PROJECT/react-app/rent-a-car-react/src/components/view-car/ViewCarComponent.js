@@ -3,7 +3,7 @@ import Car from "../car/Car";
 import carService from "../../service/car.service";
 import config from "../../config/config";
 import { Button } from "react-bootstrap";
-
+import "./ViewCar.css";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
@@ -51,29 +51,29 @@ class ViewCarComponent extends Component {
     const { car } = this.state;
     console.log(car);
     return (
-      <div className="App">
-        <div>View more information about car: </div>
-
+      <div className="Car">
+        <br />
+        <h3 className="title">View more information about car: </h3>
         <br />
         <br />
 
-        <div>
-          <div>Brand: {car.brand}</div>
-          <div>Model: {car.model}</div>
-          <div>Year: {car.year}</div>
-          {/* TODO we could add image here */}
-        </div>
-        <div className="updateDeleteSection">
-          <li key={car._id}>
-            {car.brand + " " + car.model + " (" + car.year + ")" + car.doors}
-            {
-              <Button onClick={() => this.handleDeleteCar(car._id)}>
-                Delete
-              </Button>
-            }
-            <Button href={"/edit-car/" + car._id}>Update car</Button>
-          </li>
-        </div>
+        <img id="carImg" src={car.imageUrl} />
+
+        <div>Brand: {car.brand}</div>
+        <div>Model: {car.model}</div>
+        <div>Year: {car.year}</div>
+        {/* TODO we could add image here */}
+
+        <Button
+          className="button-view-car"
+          onClick={() => this.handleDeleteCar(car._id)}
+        >
+          Delete
+        </Button>
+
+        <Button className="button-view-car" href={"/edit-car/" + car._id}>
+          Update car
+        </Button>
       </div>
     );
   }

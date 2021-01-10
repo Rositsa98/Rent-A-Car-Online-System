@@ -17,6 +17,7 @@ class RegisterComponent extends Component {
         lastName: "",
         roles: "",
         password2: "",
+        imageUrl: "",
       },
     };
 
@@ -43,7 +44,8 @@ class RegisterComponent extends Component {
       user.username &&
       user.password &&
       user.password2 &&
-      user.email
+      user.email &&
+      user.imageUrl
     ) {
       userService.register(user);
       history.push("/login");
@@ -80,6 +82,15 @@ class RegisterComponent extends Component {
               type="text"
               name="lastName"
               value={user.lastName}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="imageUrl">Image url</label>
+            <input
+              type="text"
+              name="imageUrl"
+              value={user.imageUrl}
               onChange={this.handleChange}
             />
           </div>

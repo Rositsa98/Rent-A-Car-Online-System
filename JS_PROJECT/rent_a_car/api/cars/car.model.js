@@ -43,6 +43,10 @@ const carSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = carSchema;
