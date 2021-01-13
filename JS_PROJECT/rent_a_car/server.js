@@ -77,7 +77,7 @@ Cars.countDocuments({ rentedBy: { $ne: null } }, function (err, count) {
 io.on("connection", (socket) => {
   io.sockets.emit("statistics_update", {
     message: "update statistics",
-    carCount: carCount,
+    carCount: carCount, //here to emit promise of the carCount.get
   });
 
   socket.on("disconnect", () => {
@@ -90,12 +90,12 @@ io.on("connection", (socket) => {
 
     Cars.findById(data.car, function (err, car) {
       car.rentedBy = data.user;
-      car.save();
-    });
-
-    io.sockets.emit("statistics_update", {
-      message: "update statistics",
-      carCount: carCount,
+      car.save().then(() =>
+        io.sockets.emit("statistics_update", {
+          message: "update statistics",
+          carCount: carCount,
+        })
+      );
     });
   });
 });

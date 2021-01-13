@@ -15,6 +15,7 @@ import ViewCarComponent from "../components/view-car/ViewCarComponent";
 import ViewUserComponent from "../components/view-user/ViewUserComponent";
 import StatisticsComponent from "../components/statistics/StatisticsComponent";
 import AppNavbar from "../components/navbar/AppNavbar";
+import MyCarsComponent from "../components/my-cars/MyCarsComponent";
 
 const NavRoute = ({ exact, path, component: Component, isPrivate }) =>
   //config.isUserAuthorized(path)
@@ -65,6 +66,8 @@ class Routes extends Component {
           <AppRoute path="/edit-car/*" component={EditCarComponent} />
 
           <AppRoute path="/statistics" component={StatisticsComponent} />
+
+          <AppRoute path="/my-cars" component={MyCarsComponent} />
 
           <AppRoute path="/logout" component={LogoutComponent} />
           <AppRoute path="/register" component={RegisterComponent} />

@@ -43,6 +43,38 @@ exports.getCarById = function (req, res, next) {
   });
 };
 
+exports.getCarsForUser = function (req, res, next) {
+  Cars.getCarsForUser({ rentedBy: req.params.username }, function (err, cars) {
+    if (err) {
+      res.json({
+        error: err,
+      });
+    }
+    res.json({
+      cars: cars,
+    });
+  });
+};
+
+exports.releaseCar = function (req, res, next) {
+  Cars.findById({ _id: req.params.id }, function (err, car) {
+    car.rentedBy = null;
+    car.save().then(() => {
+      if (err) {
+        console.log(err);
+        res.json({
+          error: err,
+        });
+      } else {
+        console.log(car);
+        res.json({
+          message: "Car released successfully",
+        });
+      }
+    });
+  });
+};
+
 exports.updateCar = function (req, res, next) {
   let car = {
     brand: req.body.brand,

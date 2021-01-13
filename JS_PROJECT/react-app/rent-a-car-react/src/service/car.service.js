@@ -6,6 +6,7 @@ export const carService = {
   addCar,
   updateCar,
   deleteCar,
+  releaseCar,
 };
 
 //TODO fix retrieve result
@@ -84,6 +85,15 @@ function updateCar(car, id) {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
     },
     body: formBody,
+  }).then((resp) => {
+    resp.json();
+    return resp;
+  });
+}
+
+function releaseCar(carId) {
+  return fetch("http://localhost:3001/api/releaseCar/" + carId, {
+    method: "GET",
   }).then((resp) => {
     resp.json();
     return resp;

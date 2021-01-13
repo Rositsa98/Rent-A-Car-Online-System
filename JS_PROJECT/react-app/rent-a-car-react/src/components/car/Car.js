@@ -29,6 +29,13 @@ class Car extends Component {
     socket.emit("rent_a_car", { car: carId, user: "user123" });
   };
 
+  releaseCar = (event) => {
+    event.preventDefault();
+    const carId = this.props.car._id;
+    carService.releaseCar(carId);
+    window.location.reload();
+  };
+
   render() {
     return (
       <div className="Car">
@@ -63,6 +70,11 @@ class Car extends Component {
                   Rent
                 </button>
                 {/* TODO pass username too */}
+
+                <button className="button" onClick={this.releaseCar}>
+                  {" "}
+                  Release
+                </button>
 
                 <Button
                   href={"/view-car/" + this.props.car._id}

@@ -66,6 +66,9 @@ class AppNavbar extends Component {
               <NavDropdown.Item href={"/edit-user/" + "testId"}>
                 Edit profile
               </NavDropdown.Item>
+              <NavDropdown.Item href={"/my-cars/" + "testId"}>
+                My cars
+              </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
             </NavDropdown>

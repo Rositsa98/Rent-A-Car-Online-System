@@ -15,6 +15,10 @@ carSchema.statics = {
     this.findOne(query, cb);
   },
 
+  getCarsForUser: function (query, cb) {
+    this.find(query, cb);
+  },
+
   update: function (query, updateData, cb) {
     this.findOneAndUpdate(query, { $set: updateData }, { new: true }, cb);
   },

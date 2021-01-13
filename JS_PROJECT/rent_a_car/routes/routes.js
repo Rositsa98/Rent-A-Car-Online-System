@@ -19,6 +19,8 @@ module.exports = function (router) {
   router.get("/getCar/:id", Cars.getCarById);
   router.put("/updateCar/:id", Cars.updateCar);
   router.delete("/removeCar/:id", Cars.removeCar);
+  router.get("/getCarsForUser/:username", Cars.getCarsForUser);
+  router.get("/releaseCar/:id", Cars.releaseCar);
 
   router.post("/login", Login.login);
   router.post("/register", Registration.register);
