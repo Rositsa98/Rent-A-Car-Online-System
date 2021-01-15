@@ -5,6 +5,7 @@ import config from "../../config/config";
 import { Button } from "react-bootstrap";
 import { createBrowserHistory } from "history";
 import "./ViewUser.css";
+import carService from "../../service/car.service";
 
 const history = createBrowserHistory();
 
@@ -15,7 +16,10 @@ class ViewUserComponent extends Component {
     super(props);
     this.state = {
       user: {},
+      carsCount: -1,
     };
+
+    this.rentedCarsCount = this.rentedCarsCount.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +31,7 @@ class ViewUserComponent extends Component {
     })
       .then((res) => res.json())
       .then((json) => this.setState({ user: json.user }))
+      .then(() => this.rentedCarsCount(this.state.user.username))
       .catch((err) => {
         console.log("err is " + err.message);
       });
@@ -58,6 +63,18 @@ class ViewUserComponent extends Component {
     userService.deleteUser(id).then(() => history.push("/view-users"));
   }
 
+  rentedCarsCount(username) {
+    console.log(username);
+    userService
+      .getCarsForUser(username)
+      .then((resp) => resp.json())
+      .then((resp) => this.setState({ carsCount: resp.cars.length }))
+
+      .catch((err) => {
+        console.log("err is " + err.message);
+      });
+  }
+
   render() {
     const { user } = this.state;
     return (
@@ -77,6 +94,7 @@ class ViewUserComponent extends Component {
           <div>Username: {user.username}</div>
           <div>Roles: {user.roles}</div>
           <div>Email: {user.email}</div>
+          <div>Rented cars count: {this.state.carsCount}</div>
           <Button
             className="button-view-user"
             onClick={() => this.handleDeleteUser(user._id)}

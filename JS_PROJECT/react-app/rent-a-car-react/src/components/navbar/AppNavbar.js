@@ -62,11 +62,18 @@ class AppNavbar extends Component {
                 Search
               </Button>
             </Form>
-            <NavDropdown title="usernameTest" id="basic-nav-dropdown">
-              <NavDropdown.Item href={"/edit-user/" + "testId"}>
+            <NavDropdown
+              title={localStorage.getItem("username")}
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item
+                href={"/edit-user/" + localStorage.getItem("id")}
+              >
                 Edit profile
               </NavDropdown.Item>
-              <NavDropdown.Item href={"/my-cars/" + "testId"}>
+              <NavDropdown.Item
+                href={"/my-cars/" + localStorage.getItem("username")}
+              >
                 My cars
               </NavDropdown.Item>
               <NavDropdown.Divider />

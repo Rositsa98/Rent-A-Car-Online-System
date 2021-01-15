@@ -12,9 +12,9 @@ export const userService = {
   //     delete: _delete
   updateUser,
   deleteUser,
+  getCarsForUser,
 };
 
-//TODO - fix and obtain answ
 function login(email, password) {
   console.log("Logging in user ");
 
@@ -37,16 +37,20 @@ function login(email, password) {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
     },
     body: formBody,
-  });
-}
-
-function handleResponse(response) {
-  console.log("user.service: handleResponse: res.status=" + response.status);
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-
-    return data;
-  });
+  })
+    .then((resp) => resp.json())
+    .then((resp) => {
+      console.log(resp);
+      localStorage.setItem("username", resp.username);
+      localStorage.setItem("id", resp.id);
+      localStorage.setItem("email", resp.email);
+      localStorage.setItem("roles", resp.roles);
+      return resp;
+    })
+    .catch((err) => {
+      console.log("ERROR" + err);
+      localStorage.setItem("errLogin", err);
+    });
 }
 
 //TODO - obtain result
@@ -58,7 +62,7 @@ function register(user) {
     lastName: user.lastName,
     password2: user.password2,
     email: user.email,
-    roles: "normal - user", //TODO
+    roles: localStorage.getItem("roles"),
     imageUrl: user.imageUrl,
   };
 
@@ -116,6 +120,12 @@ function deleteUser(id) {
 
   return fetch("http://localhost:3001/api/removeUser/" + id, {
     method: "DELETE",
+  });
+}
+
+function getCarsForUser(username) {
+  return fetch(APIURL + "/getCarsForUser/" + username, {
+    method: "GET",
   });
 }
 

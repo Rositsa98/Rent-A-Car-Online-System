@@ -62,7 +62,6 @@ class ViewCarComponent extends Component {
         <div>Brand: {car.brand}</div>
         <div>Model: {car.model}</div>
         <div>Year: {car.year}</div>
-        {/* TODO we could add image here */}
 
         <Button
           className="button-view-car"

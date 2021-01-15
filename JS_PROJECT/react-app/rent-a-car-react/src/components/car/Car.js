@@ -26,7 +26,11 @@ class Car extends Component {
   rentCar = (event) => {
     event.preventDefault();
     const carId = this.props.car._id;
-    socket.emit("rent_a_car", { car: carId, user: "user123" });
+    socket.emit("rent_a_car", {
+      car: carId,
+      user: localStorage.getItem("username"),
+    });
+    //TODO - add notification message
   };
 
   releaseCar = (event) => {
@@ -69,7 +73,6 @@ class Car extends Component {
                   {" "}
                   Rent
                 </button>
-                {/* TODO pass username too */}
 
                 <button className="button" onClick={this.releaseCar}>
                   {" "}

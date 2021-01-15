@@ -28,23 +28,20 @@ class LoginComponent extends Component {
     this.setState({ [name]: value });
   }
 
-  //TODO - fix
-  login() {
+  login = (e) => {
+    e.preventDefault();
     this.state.isSubmitted = true;
     const { email, password } = this.state;
 
     console.log(`email ${email} and  ${password} logged in`);
 
     if (email && password) {
-      let user = userService.login(email, password).get();
-
-      //localStorage.setItem("user", user);
-      // store user details and jwt token in local storage to keep user logged in between page refreshes
-      //sessionStorage.setItem("user", JSON.stringify(user));
-
-      history.push("/index");
+      userService
+        .login(email, password)
+        .then(() => history.push("/index"))
+        .then(() => window.location.reload());
     }
-  }
+  };
 
   render() {
     const { email, password, isSubmitted } = this.state;

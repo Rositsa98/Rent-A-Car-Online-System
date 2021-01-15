@@ -9,7 +9,6 @@ export const carService = {
   releaseCar,
 };
 
-//TODO fix retrieve result
 function addCar(car) {
   console.log("Adding car ");
 
@@ -54,7 +53,6 @@ function deleteCar(id) {
   });
 }
 
-//TODO not working
 function updateCar(car, id) {
   console.log("Updating car " + car);
 
@@ -66,7 +64,7 @@ function updateCar(car, id) {
     price: car.price,
     seats: car.seats,
     isAvailable: car.isAvailable,
-    rentedBy: "test",
+    rentedBy: localStorage.getItem("username"),
     location: car.location,
     imageUrl: car.imageUrl,
   };

@@ -2,14 +2,16 @@ let User = require("../users/user.dao");
 
 exports.login = function (req, res) {
   let token = req.cookies.auth;
-  User.findByToken(token, (err, user) => {
-    if (err) return res(User);
-    if (user)
-      return res.status(400).json({
-        error: true,
-        message: "You are already logged in",
-      });
-    else {
+  User.findByToken(
+    token,
+    (err, user) => {
+      if (err) return res(User);
+      // if (user)
+      //   return res.status(400).json({
+      //     error: true,
+      //     message: "You are already logged in",
+      //   });
+      // else {
       User.findOne({ email: req.body.email }, function (err, user) {
         if (!user)
           return res.json({
@@ -26,15 +28,20 @@ exports.login = function (req, res) {
 
           user.generateToken((err, user) => {
             if (err) return res.status(400).send(err);
-            console.log(user);
-            res.json({
-              isAuth: true,
-              id: user._id,
-              email: user.email,
-            });
+            else {
+              console.log(user);
+              return res.json({
+                isAuth: true,
+                username: user.username,
+                id: user._id,
+                email: user.email,
+                roles: user.roles,
+              });
+            }
           });
         });
       });
     }
-  });
+    //}
+  );
 };

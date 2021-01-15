@@ -4,6 +4,7 @@ import carService from "../../service/car.service";
 import config from "../../config/config";
 import { Button } from "react-bootstrap";
 import "../style/style.css";
+import userService from "../../service/user.service";
 
 const APIURL = config.apiUrl;
 
@@ -16,12 +17,9 @@ class MyCarsComponent extends Component {
     this.retrieveCars();
   }
 
-  //should go in service
   retrieveCars() {
-    //TODO - fix
-    fetch(APIURL + "/getCarsForUser" + "/user123", {
-      method: "GET",
-    })
+    userService
+      .getCarsForUser(localStorage.getItem("username"))
       .then((res) => res.json())
       .then((json) => this.setState({ cars: json.cars }))
       .catch((err) => {

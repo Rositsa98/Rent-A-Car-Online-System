@@ -5,6 +5,7 @@ const Registration = require("../api/authentication/registration.controller");
 const Profile = require("../api/authentication/profile.controller");
 const Logout = require("../api/authentication/logout.controller");
 const { auth } = require("../api/middlewares/auth");
+var cors = require("cors");
 
 module.exports = function (router) {
   router.post("/addUser", Users.createUser);
@@ -22,7 +23,7 @@ module.exports = function (router) {
   router.get("/getCarsForUser/:username", Cars.getCarsForUser);
   router.get("/releaseCar/:id", Cars.releaseCar);
 
-  router.post("/login", Login.login);
+  router.post("/login", cors(), Login.login);
   router.post("/register", Registration.register);
   router.get("/profile", auth, Profile.profile);
   router.get("/logout", auth, Logout.logout);
