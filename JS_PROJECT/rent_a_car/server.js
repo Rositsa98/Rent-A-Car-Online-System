@@ -30,16 +30,16 @@ const routes = require("./routes/routes");
 
 // Error handling
 app.use(function (req, res, next) {
-  // res.setHeader("Access-Control-Allow-Origin", "*");
-  // res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,HEAD,OPTIONS,POST,PUT,DELETE"
   );
-  // res.setHeader(
-  // "Access-Control-Allow-Headers",
-  // "Access-Control-Allow-Origin,Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Authorization"
-  // );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Access-Control-Allow-Origin,Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Authorization"
+  );
   next();
 });
 
@@ -70,11 +70,21 @@ const io = socketio(server, {
 
 let Cars = require("./api/cars/car.dao");
 let carCount;
-Cars.countDocuments({ rentedBy: { $ne: null } }, function (err, count) {
-  carCount = count;
-});
+// Cars.countDocuments({ rentedBy: { $ne: null } }, function (err, count) {
+//   carCount = count;
+// });
 
+function getCarsCount() {
+  return Cars.countDocuments({ rentedBy: { $ne: null } }, function (
+    err,
+    count
+  ) {
+    carCount = count;
+  });
+}
 io.on("connection", (socket) => {
+  console.log("anyone has connected");
+  console.log("rented cars on conn: " + getCarsCount());
   io.sockets.emit("statistics_update", {
     message: "update statistics",
     carCount: carCount, //here to emit promise of the carCount.get
@@ -90,12 +100,23 @@ io.on("connection", (socket) => {
 
     Cars.findById(data.car, function (err, car) {
       car.rentedBy = data.user;
-      car.save().then(() =>
-        io.sockets.emit("statistics_update", {
-          message: "update statistics",
-          carCount: carCount,
+      car
+        .save()
+        .then(() => {
+          return Cars.countDocuments({ rentedBy: { $ne: null } }, function (
+            err,
+            count
+          ) {
+            return count;
+          });
         })
-      );
+        .then((carCountt) => {
+          console.log("carCountt is " + carCountt);
+          io.sockets.emit("statistics_update", {
+            message: "update statistics",
+            carCount: carCountt,
+          });
+        });
     });
   });
 });

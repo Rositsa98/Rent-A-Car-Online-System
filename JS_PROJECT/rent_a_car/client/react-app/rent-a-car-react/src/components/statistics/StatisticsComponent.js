@@ -4,9 +4,9 @@ import socketIOClient from "socket.io-client";
 import { CanvasJSChart } from "canvasjs-react-charts";
 
 const config = require("../../config/config");
-const APIURL = config.get("apiUrl");
+const URL = config.get("url");
 
-const socket = socketIOClient(APIURL);
+const socket = socketIOClient(URL);
 
 let carData = {};
 let carsArray = [];
@@ -21,7 +21,6 @@ class StatisticsComponent extends React.Component {
 
   componentDidMount() {
     this.initWebSocketClient();
-    this.updateChart();
   }
 
   initWebSocketClient() {

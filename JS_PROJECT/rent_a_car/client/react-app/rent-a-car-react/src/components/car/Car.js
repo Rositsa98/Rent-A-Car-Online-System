@@ -5,9 +5,9 @@ import carService from "../../service/car.service";
 import socketIOClient from "socket.io-client";
 
 const config = require("../../config/config");
-const APIURL = config.get("apiUrl");
+const URL = config.get("url");
 
-const socket = socketIOClient(APIURL);
+const socket = socketIOClient(URL);
 
 class Car extends Component {
   constructor(props) {

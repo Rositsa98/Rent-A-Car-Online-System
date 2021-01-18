@@ -11,9 +11,9 @@ export default function RouteWrapper({
    * Redirect user to SignIn page if he tries to access a private route
    * without authentication.
    */
-  if (!isPrivate && localStorage.getItem("username")) {
-    return <Redirect to={{ pathname: "/login" }} />;
-  }
+  // if (!isPrivate && localStorage.getItem("username")) {
+  //   return <Redirect to={{ pathname: "/login" }} />;
+  // }
 
   return <Route {...rest} component={Component} />;
 }
