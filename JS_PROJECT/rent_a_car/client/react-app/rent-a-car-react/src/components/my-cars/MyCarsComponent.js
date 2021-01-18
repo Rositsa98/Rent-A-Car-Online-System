@@ -32,7 +32,7 @@ class MyCarsComponent extends Component {
         <div className="col-lg-11">
           <div className="row">
             {this.state.cars.map((car) => {
-              return <Car key={car._id} car={car} />;
+              return <Car key={car._id} car={car} hasAdminAccess="true" />;
             })}
           </div>
         </div>

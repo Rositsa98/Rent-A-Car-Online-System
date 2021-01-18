@@ -17,18 +17,6 @@ import StatisticsComponent from "../components/statistics/StatisticsComponent";
 import AppNavbar from "../components/navbar/AppNavbar";
 import MyCarsComponent from "../components/my-cars/MyCarsComponent";
 
-// const NavRoute = ({ exact, path, component: Component, isPrivate }) =>
-//   config.isUserAuthorized(path) ? (
-//     <AppRoute
-//       exact={exact}
-//       path={path}
-//       isPrivate={isPrivate}
-//       component={Component}
-//     />
-//   ) : (
-//     <Redirect to="/index" />
-//   );
-
 const AppRoute = ({ exact, path, component: Component, isPrivate }) => (
   <Route
     exact={exact}
@@ -55,22 +43,37 @@ class Routes extends Component {
           <Redirect exact from="/" to="/index" />
           <AppRoute path="/index" component={Index} />
           <Route path="/login" component={LoginComponent} />
-          <AppRoute path="/view-users" component={ViewUsersComponent} />
-          <AppRoute path="/view-user/*" component={ViewUserComponent} />
-          <AppRoute path="/edit-user/*" component={EditUserComponent} />
+          <AppRoute
+            path="/view-users"
+            component={ViewUsersComponent}
+            isPrivate
+          />
+          <AppRoute
+            path="/view-user/*"
+            component={ViewUserComponent}
+            isPrivate
+          />
+          <AppRoute
+            path="/edit-user/*"
+            component={EditUserComponent}
+            isPrivate
+          />
 
-          <AppRoute path="/view-cars" component={ViewCarsComponent} />
-          <AppRoute path="/view-car/*" component={ViewCarComponent} />
-          <AppRoute path="/addCar" component={AddCarComponent} />
-          <AppRoute path="/edit-car/*" component={EditCarComponent} />
+          <AppRoute path="/view-cars" component={ViewCarsComponent} isPrivate />
+          <AppRoute path="/view-car/*" component={ViewCarComponent} isPrivate />
+          <AppRoute path="/addCar" component={AddCarComponent} isPrivate />
+          <AppRoute path="/edit-car/*" component={EditCarComponent} isPrivate />
 
-          <AppRoute path="/statistics" component={StatisticsComponent} />
+          <AppRoute
+            path="/statistics"
+            component={StatisticsComponent}
+            isPrivate
+          />
 
-          <AppRoute path="/my-cars" component={MyCarsComponent} />
+          <AppRoute path="/my-cars" component={MyCarsComponent} isPrivate />
 
           <AppRoute path="/logout" component={LogoutComponent} />
           <AppRoute path="/register" component={RegisterComponent} />
-          {/* <Redirect from="*" to="/login" /> */}
         </Switch>
       </div>
     );

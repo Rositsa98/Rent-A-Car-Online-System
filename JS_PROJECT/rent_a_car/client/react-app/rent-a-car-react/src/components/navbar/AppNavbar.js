@@ -8,6 +8,9 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 import "./AppNavbar.css";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 class AppNavbar extends Component {
   render() {
@@ -23,62 +26,49 @@ class AppNavbar extends Component {
             className="justify-content-between"
           >
             <Nav className="mr-auto">
-              <Nav.Link
-                // disabled={!config.isUserAuthorized("/check")}
-                href="/view-cars"
-              >
-                Cars
-              </Nav.Link>
-              <Nav.Link
-                // disabled={!config.isUserAuthorized("/view-users")}
-                href="/view-users"
-              >
-                Users
-              </Nav.Link>
-              <Nav.Link
-                // disabled={!config.isUserAuthorized("/add-car")}
-                href="/addCar"
-              >
-                Add car
-              </Nav.Link>
-              <Nav.Link
-                // disabled={!config.isUserAuthorized("/viewchain")}
-                href="/statistics"
-              >
-                Statistics
-              </Nav.Link>
+              <Nav.Link href="/view-cars">Cars</Nav.Link>
+
+              {localStorage.getItem("roles") === "admin" ? (
+                <Nav.Link href="/view-users">Users</Nav.Link>
+              ) : (
+                ""
+              )}
+              {localStorage.getItem("roles") === "admin" ? (
+                <Nav.Link href="/addCar">Add car</Nav.Link>
+              ) : (
+                ""
+              )}
+              <Nav.Link href="/statistics">Statistics</Nav.Link>
             </Nav>
-            <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-              />
-              <Button
-                className="searchBtn"
-                variant="outline-success"
-                // onClick={this.generateSearchResults}
+
+            {localStorage.getItem("username") ? (
+              <NavDropdown
+                title={localStorage.getItem("username")}
+                id="basic-nav-dropdown"
               >
-                Search
-              </Button>
-            </Form>
-            <NavDropdown
-              title={localStorage.getItem("username")}
-              id="basic-nav-dropdown"
-            >
-              <NavDropdown.Item
-                href={"/edit-user/" + localStorage.getItem("id")}
+                <NavDropdown.Item
+                  href={"/edit-user/" + localStorage.getItem("id")}
+                >
+                  Edit profile
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  href={"/my-cars/" + localStorage.getItem("username")}
+                >
+                  My cars
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <button
+                onClick={() => {
+                  history.push("/login");
+                  window.location.reload();
+                }}
               >
-                Edit profile
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                href={"/my-cars/" + localStorage.getItem("username")}
-              >
-                My cars
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
-            </NavDropdown>
+                Login/Sign up
+              </button>
+            )}
           </Navbar.Collapse>
         </Navbar>
       </div>

@@ -18,10 +18,14 @@ class Car extends Component {
     this.rentCar = this.rentCar.bind(this);
   }
 
-  handleDeleteCar = (id) => {
-    console.log(id);
-    console.log(`viewCars: handleDeleteCar: about to delete car with id=${id}`);
-    carService.deleteCar(id);
+  handleDeleteCar = (event) => {
+    event.preventDefault();
+    const carId = this.props.car._id;
+    console.log(carId);
+    console.log(
+      `viewCars: handleDeleteCar: about to delete car with id=${carId}`
+    );
+    carService.deleteCar(carId);
 
     window.location.reload();
   };
@@ -44,6 +48,7 @@ class Car extends Component {
   };
 
   render() {
+    const hasAdminAccess = this.props.hasAdminAccess;
     return (
       <div className="Car">
         {
@@ -57,31 +62,43 @@ class Car extends Component {
                 {this.props.car.year}
               </div>
               <div className="updateDeleteSection">
-                {
-                  <button
-                    className="button"
-                    onClick={() => this.handleDeleteCar(this.props.car._id)}
-                  >
+                {localStorage.getItem("roles") === "admin" &&
+                hasAdminAccess === "true" ? (
+                  <button className="button" onClick={this.handleDeleteCar}>
                     Delete
                   </button>
-                }
-                <Button
-                  href={"/edit-car/" + this.props.car._id}
-                  className="button"
-                >
-                  Update
-                </Button>
-
-                <button className="button" onClick={this.rentCar}>
-                  {" "}
-                  Rent
-                </button>
-
-                <button className="button" onClick={this.releaseCar}>
-                  {" "}
-                  Release
-                </button>
-
+                ) : (
+                  ""
+                )}
+                {localStorage.getItem("roles") === "admin" &&
+                hasAdminAccess === "true" ? (
+                  <Button
+                    href={"/edit-car/" + this.props.car._id}
+                    className="button"
+                  >
+                    Update
+                  </Button>
+                ) : (
+                  ""
+                )}
+                {localStorage.getItem("roles") === "admin" ||
+                hasAdminAccess === "true" ? (
+                  <button className="button" onClick={this.rentCar}>
+                    {" "}
+                    Rent
+                  </button>
+                ) : (
+                  ""
+                )}
+                {localStorage.getItem("roles") === "admin" ||
+                hasAdminAccess === "true" ? (
+                  <button className="button" onClick={this.releaseCar}>
+                    {" "}
+                    Release
+                  </button>
+                ) : (
+                  ""
+                )}
                 <Button
                   href={"/view-car/" + this.props.car._id}
                   className="button"

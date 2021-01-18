@@ -64,15 +64,11 @@ const server = app.listen((PORT = process.env.PORT || 3001), (req, res) => {
 const io = socketio(server, {
   cors: {
     origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
   },
 });
 
 let Cars = require("./api/cars/car.dao");
 let carCount;
-// Cars.countDocuments({ rentedBy: { $ne: null } }, function (err, count) {
-//   carCount = count;
-// });
 
 function getCarsCount() {
   return Cars.countDocuments({ rentedBy: { $ne: null } }, function (
@@ -87,7 +83,7 @@ io.on("connection", (socket) => {
   console.log("rented cars on conn: " + getCarsCount());
   io.sockets.emit("statistics_update", {
     message: "update statistics",
-    carCount: carCount, //here to emit promise of the carCount.get
+    carCount: carCount,
   });
 
   socket.on("disconnect", () => {

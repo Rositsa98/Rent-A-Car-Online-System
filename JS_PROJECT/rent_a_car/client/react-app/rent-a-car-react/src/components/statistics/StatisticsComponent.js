@@ -40,7 +40,7 @@ class StatisticsComponent extends React.Component {
         x: Number(xValue),
         y: Number(y),
       });
-
+      this.chart.options.data[0].legendText = " rented cars - " + y;
       this.chart.render();
     }
   }
@@ -75,6 +75,7 @@ class StatisticsComponent extends React.Component {
           xValueFormatString: "####",
           yValueFormatString: "########.#########",
           showInLegend: true,
+          name: "rented cars",
           dataPoints: carsArray,
         },
       ],

@@ -59,16 +59,23 @@ class ViewCarComponent extends Component {
         <div>Model: {car.model}</div>
         <div>Year: {car.year}</div>
 
-        <Button
-          className="button-view-car"
-          onClick={() => this.handleDeleteCar(car._id)}
-        >
-          Delete
-        </Button>
-
-        <Button className="button-view-car" href={"/edit-car/" + car._id}>
-          Update car
-        </Button>
+        {localStorage.getItem("roles") === "admin" ? (
+          <Button
+            className="button-view-car"
+            onClick={() => this.handleDeleteCar(car._id)}
+          >
+            Delete
+          </Button>
+        ) : (
+          ""
+        )}
+        {localStorage.getItem("roles") === "admin" ? (
+          <Button className="button-view-car" href={"/edit-car/" + car._id}>
+            Update car
+          </Button>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

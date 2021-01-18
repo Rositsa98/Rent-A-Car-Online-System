@@ -50,7 +50,7 @@ function addCar(car) {
 function deleteCar(id) {
   console.log("deleting car" + id);
 
-  return fetch("/removeCar/" + id, {
+  return fetch(APIURL + "/removeCar/" + id, {
     method: "DELETE",
   });
 }
