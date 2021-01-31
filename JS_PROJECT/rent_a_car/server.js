@@ -67,7 +67,7 @@ const io = socketio(server, {
   },
 });
 
-let Cars = require("./api/cars/car.dao");
+let Cars = require("./api/cars/car.model");
 let carCount;
 
 function getCarsCount() {

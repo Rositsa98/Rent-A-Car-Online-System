@@ -1,4 +1,4 @@
-let Users = require("./user.dao");
+let Users = require("./user.model");
 
 exports.createUser = function (req, res, next) {
   let user = new Users(req.body);

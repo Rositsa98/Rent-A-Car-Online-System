@@ -1,5 +1,5 @@
 // get logged in user
-let User = require("../users/user.dao");
+let User = require("../users/user.model");
 const { auth } = require("../middlewares/auth");
 
 exports.profile = function (req, res) {

@@ -1,4 +1,4 @@
-let User = require("../users/user.dao");
+let User = require("../users/user.model");
 
 exports.login = function (req, res) {
   let token = req.cookies.auth;

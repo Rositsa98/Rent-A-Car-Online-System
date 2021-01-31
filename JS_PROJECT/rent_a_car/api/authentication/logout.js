@@ -1,4 +1,4 @@
-let User = require("../users/user.dao");
+let User = require("../users/user.model");
 
 //logout user
 exports.logout = function (req, res, next) {

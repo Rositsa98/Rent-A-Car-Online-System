@@ -1,4 +1,4 @@
-const User = require("../users/user.dao");
+const User = require("../users/user.model");
 
 let auth = (req, res, next) => {
   let token = req.cookies.auth;

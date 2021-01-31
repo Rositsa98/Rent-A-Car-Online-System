@@ -1,9 +1,9 @@
-const Users = require("../api/users/user.controller");
-const Cars = require("../api/cars/car.controller");
-const Login = require("../api/authentication/login.controller");
-const Registration = require("../api/authentication/registration.controller");
-const Profile = require("../api/authentication/profile.controller");
-const Logout = require("../api/authentication/logout.controller");
+const Users = require("../api/users/user");
+const Cars = require("../api/cars/car");
+const Login = require("../api/authentication/login");
+const Registration = require("../api/authentication/registration");
+const Profile = require("../api/authentication/profile");
+const Logout = require("../api/authentication/logout");
 const { auth } = require("../api/middlewares/auth");
 var cors = require("cors");
 

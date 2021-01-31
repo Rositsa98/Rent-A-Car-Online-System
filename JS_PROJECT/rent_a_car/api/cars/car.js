@@ -1,4 +1,4 @@
-let Cars = require("./car.dao");
+let Cars = require("./car.model");
 
 exports.createCar = function (req, res, next) {
   let car = new Cars(req.body);
