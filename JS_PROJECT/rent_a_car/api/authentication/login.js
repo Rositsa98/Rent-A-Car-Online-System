@@ -6,12 +6,6 @@ exports.login = function (req, res) {
     token,
     (err, user) => {
       if (err) return res(User);
-      // if (user)
-      //   return res.status(400).json({
-      //     error: true,
-      //     message: "You are already logged in",
-      //   });
-      // else {
       User.findOne({ email: req.body.email }, function (err, user) {
         if (!user)
           return res.json({
