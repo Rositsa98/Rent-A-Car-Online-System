@@ -1,11 +1,9 @@
 # Rent-A-Car-Online-System
 FMI course project 
 
-Spring5 project - with backend spring and front-end Angular
+Advanced JS course project - with Express js and React
 
-And overwritten as Advanced JS course project - with Express js and React
-
-Both use mongoDB
+Uses mongoDB
 
 It has main functionalities for:
 
@@ -15,5 +13,4 @@ It has main functionalities for:
 
 - JWT authentication is used.
 
-In JS project 
 - idea is to add statistics view for admin which will be based on obtaining information with web sockets
