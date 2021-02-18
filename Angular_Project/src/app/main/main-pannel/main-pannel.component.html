@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+
+        <select class="mdb-select md-form" id="select-location" [(ngModel)]="selectedLocation">
+            <option value="" >Choose location</option>
+            <option *ngFor="let location of locations">{{location}}</option>
+        </select>
+      <select class="mdb-select md-form" id="select-model" [(ngModel)]="selectedModel">
+        <option value="" >Choose model</option>
+        <option *ngFor=" let model of models"  >{{model}}</option>
+      </select>
+<!--        <mat-form-field class="datepickers">-->
+<!--                <input matInput [matDatepicker]="picker1" placeholder="From date">-->
+<!--                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+<!--                <mat-datepicker #picker1></mat-datepicker>-->
+<!--        </mat-form-field>-->
+
+<!--        <mat-form-field class="datepickers">-->
+<!--                <input matInput [matDatepicker]="picker2" placeholder="To date">-->
+<!--                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>-->
+<!--                <mat-datepicker #picker2></mat-datepicker>-->
+<!--        </mat-form-field>-->
+
+        <button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="onSearch()">Search</button>
+    </div>
+  <div class="raw">
+    <button class="btn btn-primary" id="compare-btn" routerLink="/compare" class="btn btn-primary">Compare cars</button>
+  </div>
+      <div id="row-space"></div>
+      <div class="main-content" *ngIf="toBeSearch">
+        <div class="cars" *ngFor="let car of cars">
+          <div class="row" *ngIf="selectedModel == car.model || selectedLocation == car.location">
+            <div class="column" class="img-with-text">
+              <img src="{{car.imageURL}}"  alt="image" />
+              <button class="btn btn-primary" id="reserve-btn" routerLink="/reserve/{{car.id}}" class="btn btn-primary" (click)="onClick(car.id)">Reserve</button>
+
+            </div>
+            <div class="column">
+              <table class="table table-bordered table-inverse" id="info1-table">
+                <tr><th>Model:</th><td>{{car.model}}</td></tr>
+                <tr><th>Price:</th><td>{{car.price}}</td></tr>
+                <tr><th>Seats:</th><td>{{car.seats}}</td></tr>
+                <tr><th>Doors:</th> <td>{{car.doors}}</td></tr>
+                <tr><th>Automatic:</th> <td>{{car.automatic}}</td></tr>
+                <tr><th>AirConditioning:</th><td>{{car.airConditioning}}</td></tr>
+                <tr><th>Available:</th> <td>{{car.available}}</td></tr>
+                <tr><th>Location:</th><td>{{car.location}}</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+

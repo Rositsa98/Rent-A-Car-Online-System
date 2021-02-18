@@ -1,0 +1,82 @@
+<button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="viewUsers()">Users</button>
+<button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="viewCars()">Cars</button>
+<button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="viewProfits()">Profits</button>
+
+
+
+<div class="main-content-users" *ngIf="isViewUsers">
+
+        <table class="table" id="info-table-users" *ngIf="isViewUsers">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let user of this.users">
+                            <td>{{user.username}}</td>
+                            <td>{{user.password}}</td>
+                            <td>{{user.firstName}}</td>
+                            <td>{{user.lastName}}</td>
+                            <td>{{user.phoneNumber}}</td>
+                            <th scope="row">
+                                <button class="btn btn-primary" id="search-btn" class="btn btn-primary"
+                                    (click)="deleteUser(user.id)">Delete User</button>
+            
+                            </th>
+                        </tr>
+                    
+                </tbody>
+            </table>
+
+
+    <button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="addUser()">Add User</button>
+
+</div>
+
+
+
+
+<div class="main-content-cars" *ngIf="isViewCars">
+
+            <table class="table table-bordered table-inverse" id="info-table">
+
+                    <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Model</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Seats</th>
+                                <th scope="col">Doors</th>
+                                <th scope="col">Automatic</th>
+                                <th scope="col">Air conditioning</th>
+                                <th scope="col">Available</th>
+                                <th scope="col">Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let car of this.cars">
+                                    <td>{{car.model}}</td>
+                                    <td>{{car.price}}</td>
+                                    <td>{{car.seats}}</td>
+                                    <td>{{car.doors}}</td>
+                                    <td>{{car.automatic}}</td>
+                                    <td>{{car.airConditioning}}</td>
+                                    <td>{{car.available}}</td>
+                                    <td>{{car.location}}</td>
+                                    <th scope="row">
+                                        <button class="btn btn-primary" id="search-btn" class="btn btn-primary"
+                                            (click)="deleteCar(car.id)">Delete car</button>
+                    
+                                    </th>
+                                </tr>
+                            
+                        </tbody>
+
+            </table>
+
+    <button class="btn btn-primary" id="search-btn" class="btn btn-primary" (click)="addCar()">Add Car</button>
+</div>

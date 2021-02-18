@@ -1,0 +1,54 @@
+#select-first-car{
+  border-color: transparent;
+  border-radius: 0%;
+  margin-left: 0%;
+  margin-top: 5%;
+  height: 60px;
+  width: 222px;
+  font-style: italic;
+  font-size: medium;
+  background-color: transparent;
+  margin-right: 2%;
+}
+#select-second-car{
+  border-color: transparent;
+  border-radius: 0%;
+  margin-left: 5%;
+  margin-top: 5%;
+  height: 60px;
+  width: 222px;
+  font-style: italic;
+  font-size: medium;
+  background-color: transparent;
+  margin-right: 2%;
+}
+#compare-btn{
+  height: 20%;
+  margin-top: 6%;
+  margin-left: 3%;
+  background-color: black;
+}
+#info-table{
+  margin-left: 10%;
+  height: 300px;
+  width: 450px;
+}
+#car1-table{
+  margin-right: 0%;
+  height: 300px;
+  width: 450px;
+}
+#car2-table{
+  margin-left: 0%;
+  height: 300px;
+  width: 450px;
+}
+.img-with-text {
+  text-align: justify;
+}
+
+.img-with-text img {
+  display: block;
+  width: 450px;
+  height: 320px;
+}
