@@ -22,7 +22,7 @@ function addCar(car) {
     price: car.price,
     seats: car.seats,
     isAvailable: car.isAvailable,
-    rentedBy: "test",
+    rentedBy: "null",
     location: car.location,
     imageUrl: car.imageUrl,
   };

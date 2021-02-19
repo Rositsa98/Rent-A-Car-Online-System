@@ -157,16 +157,6 @@ class AddCarComponent extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div>
-                  <input
-                    className="input"
-                    type="text"
-                    name="rentedBy"
-                    placeholder="Rented by"
-                    value={car.rentedBy}
-                    onChange={this.handleChange}
-                  />
-                </div>
                 <div className="form-group">
                   <div className="p-t-30">
                     <button

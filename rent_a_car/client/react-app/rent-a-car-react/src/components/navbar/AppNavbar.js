@@ -38,12 +38,20 @@ class AppNavbar extends Component {
               ) : (
                 ""
               )}
-              <Nav.Link href="/statistics">Statistics</Nav.Link>
+              {localStorage.getItem("roles") === "admin" ? (
+                <Nav.Link href="/statistics">Statistics</Nav.Link>
+              ) : (
+                ""
+              )}
             </Nav>
 
             {localStorage.getItem("username") ? (
               <NavDropdown
-                title={localStorage.getItem("username")}
+                title={
+                  localStorage.getItem("username") != undefined
+                    ? localStorage.getItem("username")
+                    : ""
+                }
                 id="basic-nav-dropdown"
               >
                 <NavDropdown.Item
