@@ -115,4 +115,10 @@ io.on("connection", (socket) => {
         });
     });
   });
+
+  setInterval(() => {
+    io.sockets.emit("notification", {
+      message: "new car is available for rent " + Math.random(),
+    });
+  }, 60 * 1000);
 });
